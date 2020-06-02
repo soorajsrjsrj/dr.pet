@@ -11,6 +11,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         System.out.println("Ayub's commit in project");
+        System.out.println("khushi commit in project");
+
     }
    // new commit testing
 
