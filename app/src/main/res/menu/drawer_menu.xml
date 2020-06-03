@@ -6,17 +6,25 @@
     tools:showIn="navigation_view">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_message"
-            android:icon="@drawable/ic_message"
+            android:id="@+id/nav_mainmenu"
+            android:icon="@drawable/ic_pets"
             android:title="Main Menu" />
         <item
-            android:id="@+id/nav_chat"
-            android:icon="@drawable/ic_message"
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/ic_profile"
             android:title="Profile" />
         <item
-            android:id="@+id/nav_profile"
-            android:icon="@drawable/ic_message"
+            android:id="@+id/nav_pethospitalnear"
+            android:icon="@drawable/ic_location"
             android:title="Pet Hospital Nearby" />
+        <item
+            android:id="@+id/nav_payment"
+            android:icon="@drawable/ic_payment"
+            android:title="Payment" />
+        <item
+            android:id="@+id/nav_ridedetails"
+            android:icon="@drawable/ic_ridetaxi"
+            android:title="Ride Details" />
     </group>
     <item android:title="Communicate">
         <menu>
