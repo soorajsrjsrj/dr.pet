@@ -1,25 +1,42 @@
 package com.example.drpet;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.location.Location;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MenuFragment extends Fragment {
+public class MenuFragment extends Fragment implements OnMapReadyCallback,
+        GoogleApiClient.ConnectionCallbacks,GoogleApiClient.OnConnectionFailedListener, LocationListener {
     private GoogleMap googleMap;
     private MapView mapView;
     private boolean mapsSupported = true;
+
+
+
+//    new variable
+private GoogleMap mMap;
 
 
 
@@ -40,8 +57,14 @@ public class MenuFragment extends Fragment {
             mapView = (MapView) getActivity().findViewById(R.id.map);
             googleMap = mapView.getMap();
             //setup markers etc...
+            LatLng coordinates = new LatLng(41, 41);
+            googleMap.addMarker(new MarkerOptions().position(coordinates));
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(coordinates, 15));
+            mapView.onResume();
 
     }}
+
+
 
 
     @Nullable
@@ -82,5 +105,38 @@ public class MenuFragment extends Fragment {
     public void onLowMemory() {
         super.onLowMemory();
         mapView.onLowMemory();
+    }
+
+
+
+// new
+
+
+
+
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+
+    }
+
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+
     }
 }
