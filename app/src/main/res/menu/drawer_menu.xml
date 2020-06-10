@@ -21,7 +21,6 @@
             android:id="@+id/nav_pethospitalnear"
             android:icon="@drawable/ic_location"
             android:title="Pet Hospitals Nearby" />
-
         <item
             android:id="@+id/nav_ridedetails"
             android:icon="@drawable/ic_ridetaxi"
