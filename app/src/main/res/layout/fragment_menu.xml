@@ -18,12 +18,11 @@
 <!--        tools:context="com.abhiandroid.GoogleMaps.googlemaps.MapsActivity"/>-->
 
 
-    <com.google.android.gms.maps.MapView
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/map"
+        class="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:layout_margin="20dp"
-        android:layout_weight="1"/>
+        android:layout_height="299dp" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
