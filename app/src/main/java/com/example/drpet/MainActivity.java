@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         drawer = findViewById(R.id.drawer_layout);
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     new MenuFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_mainmenu);
         }
+
     }
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
