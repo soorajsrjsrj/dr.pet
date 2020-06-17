@@ -16,38 +16,39 @@
 <!--            android:textSize="30sp" />*/-->
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="160dp"
-            android:padding="10dp"
+            android:layout_height="157dp"
             android:layout_marginBottom="0dp"
-            android:background="#fece2f">
+            android:background="#1accff"
+            android:padding="10dp">
+
             <ImageView
                 android:id="@+id/profile_image"
                 android:layout_width="90dp"
                 android:layout_height="90dp"
-                android:src="@drawable/dp"
-                android:layout_centerVertical="true"/>
+                android:layout_centerVertical="true"
+                android:src="@drawable/dp" />
 
 
             <TextView
                 android:id="@+id/full_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Eshwar Raj"
-                android:textSize="30sp"
-                android:layout_toRightOf="@id/profile_image"
                 android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/profile_image"
                 android:includeFontPadding="false"
-                android:layout_marginLeft="10dp"/>
+                android:text="Eshwar Raj"
+                android:textSize="30sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="eshwar_akke"
-                android:textSize="18sp"
+                android:layout_below="@id/full_name"
+                android:layout_marginLeft="1dp"
                 android:layout_toRightOf="@id/profile_image"
                 android:includeFontPadding="false"
-                android:layout_below="@id/full_name"
-                android:layout_marginLeft="1dp"/>
+                android:text="eshwar_akke"
+                android:textSize="18sp" />
 
             <Button
                 android:id="@+id/edit"
@@ -55,8 +56,8 @@
                 android:layout_width="60dp"
                 android:layout_height="20sp"
                 android:layout_below="@id/profile_image"
-                android:layout_marginTop="1dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="1dp"
                 android:background="#F4EDED"
                 android:text="Edit"
                 android:textColor="@color/cardview_dark_background"
@@ -65,9 +66,9 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="50dp"
-            android:orientation="vertical">
+            android:layout_height="574dp"
+            android:orientation="vertical"
+            android:padding="50dp">
 
 
             <TextView
@@ -79,72 +80,78 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="First Name"
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginBottom="10dp"
+                android:hint="First Name" />
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/first"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawablePadding="10dp"
-            />
+                android:drawablePadding="10dp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Last Name"
                 android:textSize="18sp"></TextView>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Last Name"
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginBottom="10dp"
+                android:hint="Last Name" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/last"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawablePadding="10dp"
-              />
+                android:drawablePadding="10dp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Phone Number"
                 android:textSize="18sp"></TextView>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Phone Number"
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginBottom="10dp"
+                android:hint="Phone Number" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawablePadding="10dp"
-               />
+                android:drawablePadding="10dp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Email"
                 android:textSize="18sp"></TextView>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Email"
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginBottom="10dp"
+                android:hint="Email" />
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/mail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawablePadding="10dp"
+                android:layout_marginBottom="40dp"
 
-                android:layout_marginBottom="40dp"/>
+                android:drawablePadding="10dp" />
+
             <Button
                 android:id="@+id/btn_update"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Update"
+                android:background="#1accff"
                 android:padding="10dp"
-                android:background="#fece2f"/>
+                android:text="Update" />
 
         </LinearLayout>
     </LinearLayout>

@@ -7,6 +7,5 @@
             android:gravity="center"
             android:src="@drawable/ic_launcher_foreground"/>
 <!--            android:tint="@color/black"-->
-
     </item>
 </layer-list>
