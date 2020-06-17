@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Dr. Pet</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="google_app_id">AIzaSyB8-VBp-EES8iDNiB-9pWCCwR0YspOuPeY</string>
 </resources>
