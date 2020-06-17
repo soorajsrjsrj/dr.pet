@@ -1,10 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent" android:background="@android:color/holo_green_light">
+    android:layout_width="match_parent" android:layout_height="match_parent" android:background="@android:color/white">
+
+    <TextView
+        android:id="@+id/tx1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="17dp"
+        android:layout_marginLeft="17dp"
+        android:layout_marginTop="25dp"
+        android:paddingBottom="30dp"
+        android:text="Based on your location,"
+        android:textSize="20sp"
+        android:textColor="#070707"/>
+
+    <TextView
+        android:id="@+id/tx2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tx1"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="-11dp"
+        android:layout_marginLeft="-11dp"
+        android:layout_marginTop="-29dp"
+        android:paddingLeft="30dp"
+        android:text="Listed below are nearest shelters"
+        android:textSize="20sp"
+        android:textColor="#070707"/>
+
+
+    <ImageView
+        android:id="@+id/img1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/tx2"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="11dp"
+        android:layout_marginLeft="11dp"
+        android:layout_marginTop="106dp"
+        android:src="@drawable/pet1">
+
+
+    </ImageView>
+
+    <TextView
+        android:id="@+id/txt2"
+        android:layout_width="220dp"
+        android:layout_height="100dp"
+        android:layout_alignLeft="@+id/img1"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="110dp"
+        android:background="@drawable/my_border"
+        android:textSize="14sp"
+        android:textColor="#070707">
+    </TextView>
+
+    <ImageView
+        android:id="@+id/img2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/img1"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="17dp"
+        android:layout_marginLeft="17dp"
+        android:layout_marginTop="243dp"
+        android:src="@drawable/pet3">
+
+
+
+    </ImageView>
+
+    <TextView
+        android:id="@+id/txt3"
+        android:layout_width="220dp"
+        android:layout_height="100dp"
+        android:layout_alignLeft="@+id/img1"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="246dp"
+        android:background="@drawable/my_border"
+
+        android:textSize="14sp"
+        android:textColor="#070707"
+        android:paddingRight="15dp">
+
+    </TextView>
+
+    <ImageView
+        android:id="@+id/img3"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/img2"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="393dp"
+        android:src="@drawable/pet2">
+
+
+    </ImageView>
+
+    <TextView
+        android:id="@+id/txt4"
+        android:layout_width="220dp"
+        android:layout_height="100dp"
+        android:layout_alignLeft="@+id/img2"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="144dp"
+        android:layout_marginTop="393dp"
+        android:background="@drawable/my_border"
+        android:textSize="14sp"
+        android:textColor="#070707">
+    </TextView>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Hospital NearBy Fragment"
-        android:textSize="30sp" />
+        android:layout_below="@id/img3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="56dp"
+        android:text="Select a hospital from above to book a ride"
+        android:textColor="#FF0000"
+        android:textSize="18sp"
+        android:gravity="center"
+        >
+
+    </TextView>
+
 </RelativeLayout>
+
+
