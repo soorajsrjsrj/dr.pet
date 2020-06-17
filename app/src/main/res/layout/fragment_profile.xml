@@ -16,25 +16,25 @@
 <!--            android:textSize="30sp" />*/-->
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="157dp"
+            android:layout_height="131dp"
             android:layout_marginBottom="0dp"
             android:background="#1accff"
             android:padding="10dp">
+
 
             <ImageView
                 android:id="@+id/profile_image"
                 android:layout_width="90dp"
                 android:layout_height="90dp"
-                android:layout_centerVertical="true"
                 android:src="@drawable/dp" />
-
 
             <TextView
                 android:id="@+id/full_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_toRightOf="@id/profile_image"
                 android:includeFontPadding="false"
                 android:text="Eshwar Raj"
@@ -44,7 +44,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/full_name"
-                android:layout_marginLeft="1dp"
+                android:layout_marginLeft="21dp"
+                android:layout_marginTop="20dp"
                 android:layout_toRightOf="@id/profile_image"
                 android:includeFontPadding="false"
                 android:text="eshwar_akke"
@@ -56,6 +57,9 @@
                 android:layout_width="60dp"
                 android:layout_height="20sp"
                 android:layout_below="@id/profile_image"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="1dp"
                 android:background="#F4EDED"
