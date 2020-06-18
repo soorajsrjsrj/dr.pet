@@ -1,8 +1,11 @@
 package com.example.drpet;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +24,9 @@ import androidx.fragment.app.Fragment;
 
 import com.example.drpet.Model.DBManager;
 import com.example.drpet.Model.DatabaseHelper;
+import com.github.dhaval2404.imagepicker.ImagePicker;
+
+import java.net.URI;
 
 public class Profile extends Fragment {
 
@@ -37,6 +43,8 @@ public class Profile extends Fragment {
     private DBManager dbManager;
 
     private SimpleCursorAdapter adapter;
+
+    ImageView profile_image;
 
     final String[] from = new String[] { DatabaseHelper.email,
             DatabaseHelper.fName, DatabaseHelper.lName, DatabaseHelper.phone };
@@ -75,7 +83,7 @@ public class Profile extends Fragment {
 
 
 
-        ImageView profile_image = (ImageView) getView().findViewById(R.id.profile_image);
+        profile_image = (ImageView) getView().findViewById(R.id.profile_image);
         final TextView first = (TextView) getView().findViewById(R.id.first);
         final TextView last = (TextView) getView().findViewById(R.id.last);
         final TextView email = (TextView) getView().findViewById(R.id.mail);
@@ -88,6 +96,7 @@ public class Profile extends Fragment {
             last.setText(cursor.getString(1));
             email.setText(cursor.getString(2));
             phone.setText(cursor.getString(3));
+            insert.setVisibility(View.INVISIBLE);
         }
 
         update.setOnClickListener(new View.OnClickListener() {
@@ -100,6 +109,15 @@ public class Profile extends Fragment {
                 dbManager.update(upd_first, upd_last, upd_phone, upd_email);
             }
         });
+
+        /*profile_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                *//*ImagePicker.Companion.with(Profile.this)
+                        .cropSquare()
+                        .start();*//*
+            }
+        });*/
 
 
 
@@ -151,8 +169,23 @@ public class Profile extends Fragment {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getActivity().getApplicationContext(), "Update Image", Toast.LENGTH_SHORT).show();
+                ImagePicker.Companion.with(Profile.this)
+                        .cropSquare()
+                        .compress(1024)
+                        .start();
             }
         });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(resultCode == Activity.RESULT_OK){
+            Uri fileUri = data.getData();
+            profile_image.setImageURI(fileUri);
+
+        }
     }
 
     /*@Override

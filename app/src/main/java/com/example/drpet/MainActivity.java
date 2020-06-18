@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.navigation.NavigationView;
 
 
@@ -37,6 +38,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     new MenuFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_mainmenu);
         }
+
+
+
     }
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {

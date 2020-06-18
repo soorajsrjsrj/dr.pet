@@ -1,3 +1,4 @@
+/*
 package com.example.drpet.Model;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
@@ -49,3 +50,4 @@ public class Profiles extends RealmObject {
         this.profile_phone = profile_phone;
     }
 }
+*/

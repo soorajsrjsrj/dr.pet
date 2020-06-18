@@ -66,6 +66,9 @@ public class MenuFragment extends Fragment implements OnMapReadyCallback, Google
     SupportMapFragment mFragment;
     FragmentManager fragmentManager;
 
+    LinearLayout profile_page;
+    LinearLayout payment_page;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -79,6 +82,26 @@ public class MenuFragment extends Fragment implements OnMapReadyCallback, Google
         locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
         statusOfGPS = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
         return view;
+
+
+
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        profile_page = (LinearLayout) getView().findViewById(R.id.profile_page);
+        payment_page = (LinearLayout) getView().findViewById(R.id.payment_page);
+
+        profile_page.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                assert getFragmentManager() != null;
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new Profile()).commit();
+            }
+        });
     }
 
     @Override
