@@ -16,7 +16,7 @@
         android:layout_marginLeft="17dp"
         android:layout_marginTop="25dp"
         android:paddingBottom="30dp"
-        android:text="Based on your location,"
+        android:text="Based On Your Location,"
         android:textColor="#070707"
         android:textSize="20sp"
 android:background="#1accff"
@@ -34,7 +34,7 @@ android:background="#1accff"
         android:layout_marginLeft="-11dp"
         android:layout_marginTop="-29dp"
         android:paddingLeft="30dp"
-        android:text="Listed below are nearest shelters"
+        android:text="Listed Below Are Nearest Shelters"
         android:textColor="#070707"
         android:textSize="20sp" />
 
@@ -42,23 +42,24 @@ android:background="#1accff"
 </LinearLayout>
     <RelativeLayout android:layout_height="wrap_content"
         android:layout_width="match_parent">
-    <ImageView
-        android:id="@+id/img1"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_below="@+id/tx2"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="11dp"
-        android:layout_marginLeft="11dp"
-        android:layout_marginTop="106dp"
-        android:src="@drawable/pet1">
+
+        <ImageView
+            android:id="@+id/img1"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_below="@+id/tx2"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="11dp"
+            android:layout_marginLeft="11dp"
+            android:layout_marginTop="111dp"
+            android:src="@drawable/pet1">
 
 
-    </ImageView>
+        </ImageView>
 
-    <TextView
+        <TextView
         android:id="@+id/txt2"
         android:layout_width="220dp"
         android:layout_height="100dp"
@@ -68,27 +69,33 @@ android:background="#1accff"
         android:layout_marginTop="110dp"
         android:background="@drawable/my_border"
         android:textSize="14sp"
-        android:textColor="#070707">
+        android:textColor="#070707"
+            android:text="@string/paragraph1"
+            android:textAlignment="center"
+            android:paddingStart="0dp"
+            android:paddingEnd="5dp"
+            android:gravity="center_horizontal"
+            android:paddingLeft="0dp"
+            android:paddingRight="5dp">>
     </TextView>
 
-    <ImageView
-        android:id="@+id/img2"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_below="@+id/img1"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="17dp"
-        android:layout_marginLeft="17dp"
-        android:layout_marginTop="243dp"
-        android:src="@drawable/pet3">
+        <ImageView
+            android:id="@+id/img2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_below="@+id/img1"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="17dp"
+            android:layout_marginLeft="17dp"
+            android:layout_marginTop="248dp"
+            android:src="@drawable/pet3">
 
 
+        </ImageView>
 
-    </ImageView>
-
-    <TextView
+        <TextView
         android:id="@+id/txt3"
         android:layout_width="220dp"
         android:layout_height="100dp"
@@ -100,7 +107,14 @@ android:background="#1accff"
 
         android:textSize="14sp"
         android:textColor="#070707"
-        android:paddingRight="15dp">
+        android:paddingRight="15dp"
+            android:text="@string/paragraph1"
+            android:textAlignment="center"
+            android:paddingStart="0dp"
+            android:paddingEnd="5dp"
+            android:gravity="center_horizontal"
+            android:paddingLeft="0dp"
+            >
 
     </TextView>
 
@@ -130,7 +144,14 @@ android:background="#1accff"
         android:layout_marginTop="393dp"
         android:background="@drawable/my_border"
         android:textSize="14sp"
-        android:textColor="#070707">
+        android:textColor="#070707"
+        android:text="@string/paragraph1"
+        android:textAlignment="center"
+        android:paddingStart="0dp"
+        android:paddingEnd="5dp"
+        android:gravity="center_horizontal"
+        android:paddingLeft="0dp"
+        android:paddingRight="5dp">>
     </TextView>
 
     <TextView
@@ -139,8 +160,8 @@ android:background="#1accff"
         android:layout_below="@id/img3"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="56dp"
-        android:text="Select a hospital from above to book a ride"
-        android:textColor="#FF0000"
+        android:text="Select A Hospital From Above To Book A Ride"
+        android:textColor="#070707"
         android:textSize="18sp"
         android:gravity="center"
         >
