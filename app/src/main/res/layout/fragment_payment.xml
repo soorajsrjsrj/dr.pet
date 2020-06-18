@@ -137,7 +137,7 @@
                     android:layout_below="@+id/expiry_date_layout"
                     android:layout_marginTop="15dp"
 
-                    android:background="#ED4C40"
+                    android:background="#1accff"
                     android:padding="5dp"
                     android:text="ADD PAYMENT"
                     android:textColor="@android:color/white" />
