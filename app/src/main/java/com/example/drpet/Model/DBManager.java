@@ -27,18 +27,20 @@ public class DBManager {
         dbHelper.close();
     }
 
-    public void insert(String fName, String lName, String phone, String email) {
+    public void insert(String fName, String lName, String phone, String email, byte[] image) throws SQLException {
         ContentValues contentValue = new ContentValues();
         contentValue.put(DatabaseHelper.fName, fName);
         contentValue.put(DatabaseHelper.lName, lName);
         contentValue.put(DatabaseHelper.phone, phone);
         contentValue.put(DatabaseHelper.email, email);
+        contentValue.put(DatabaseHelper.profile_img, image);
 
         database.insert(DatabaseHelper.TABLE_NAME, null, contentValue);
+        System.out.println(image);
     }
 
     public Cursor fetch() {
-        String[] columns = new String[] {DatabaseHelper.fName, DatabaseHelper.lName, DatabaseHelper.email, DatabaseHelper.phone };
+        String[] columns = new String[] {DatabaseHelper.fName, DatabaseHelper.lName, DatabaseHelper.email, DatabaseHelper.phone, DatabaseHelper.profile_img };
         Cursor cursor = database.query(DatabaseHelper.TABLE_NAME, columns, null, null, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
@@ -46,13 +48,15 @@ public class DBManager {
         return cursor;
     }
 
-    public void update(String fName, String lName, String phone, String email) {
+    public void update(String fName, String lName, String phone, String email , byte[] image) throws SQLException {
         ContentValues contentValues = new ContentValues();
         contentValues.put(DatabaseHelper.fName, fName);
         contentValues.put(DatabaseHelper.lName, lName);
         contentValues.put(DatabaseHelper.email, email);
         contentValues.put(DatabaseHelper.phone, phone);
+        contentValues.put(DatabaseHelper.profile_img, image);
         database.update(DatabaseHelper.TABLE_NAME, contentValues, DatabaseHelper.email + " = '" + email + "'" , null);
+        System.out.println(image);
     }
 
     public void delete(String email) {

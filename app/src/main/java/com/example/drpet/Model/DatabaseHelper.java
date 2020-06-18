@@ -16,6 +16,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String lName = "lName";
     public static final String email = "email";
     public static final String phone = "phone";
+    public static final String profile_img = "profile_img";
 
     // Database Information
     static final String DB_NAME = "DRPET.DB";
@@ -24,7 +25,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     static final int DB_VERSION = 1;
 
     // Creating table query
-    private static final String CREATE_TABLE = "create table " + TABLE_NAME + "(" + fName + " TEXT, " + lName + " TEXT, " + email + " TEXT, " + phone + " INTEGER);" ;
+    private static final String CREATE_TABLE = "create table " + TABLE_NAME + "(" + fName + " TEXT, " + lName + " TEXT, " + email + " TEXT, " + phone + " INTEGER, " + profile_img + " BLOB);" ;
 
     public DatabaseHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);

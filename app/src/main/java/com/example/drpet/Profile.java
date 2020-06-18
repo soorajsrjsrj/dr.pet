@@ -5,6 +5,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -21,11 +24,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.drpet.Model.DBManager;
 import com.example.drpet.Model.DatabaseHelper;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 
+import java.io.ByteArrayOutputStream;
 import java.net.URI;
 
 public class Profile extends Fragment {
@@ -96,6 +101,11 @@ public class Profile extends Fragment {
             last.setText(cursor.getString(1));
             email.setText(cursor.getString(2));
             phone.setText(cursor.getString(3));
+            byte[] image = cursor.getBlob(4);
+
+            Bitmap profile = getImage(image);
+            profile_image.setImageBitmap(profile);
+
             insert.setVisibility(View.INVISIBLE);
         }
 
@@ -106,7 +116,26 @@ public class Profile extends Fragment {
                 String upd_last = last.getText().toString();
                 String upd_phone = phone.getText().toString();
                 String upd_email = email.getText().toString();
-                dbManager.update(upd_first, upd_last, upd_phone, upd_email);
+                BitmapDrawable bitmapDrawable = (BitmapDrawable) profile_image.getDrawable();
+                Bitmap bitmap = bitmapDrawable.getBitmap();
+                byte[] profile_img;
+
+                if (bitmap != null){
+                    profile_img = getBytes(bitmap);
+                }else{
+                    profile_img = null;
+                }
+
+                dbManager.update(upd_first, upd_last, upd_phone, upd_email, profile_img);
+
+                Fragment frg = null;
+                frg = getFragmentManager().findFragmentById(R.id.fragment_container);
+                final FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.detach(frg);
+                ft.attach(frg);
+                ft.commit();
+
+                Toast.makeText(getActivity().getApplicationContext(), "Updated Successfully", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -135,6 +164,7 @@ public class Profile extends Fragment {
                 final EditText fName = (EditText) v.findViewById(R.id.first_name);
                 final EditText lName = (EditText) v.findViewById(R.id.last_name);
                 final EditText s_phone = (EditText) v.findViewById(R.id.s_phone);
+                final ImageView prof_pick = (ImageView) v.findViewById(R.id.prof_pick);
 
 
 
@@ -150,8 +180,12 @@ public class Profile extends Fragment {
                         String l_name = lName.getText().toString();
                         String u_phone = s_phone.getText().toString();
 
+                        BitmapDrawable Drawable = (BitmapDrawable) prof_pick.getDrawable();
+                        Bitmap bt = Drawable.getBitmap();
 
-                        dbManager.insert(f_name, l_name, u_phone, u_email);
+                        byte[] pro_pick = getBytes(bt);
+
+                        dbManager.insert(f_name, l_name, u_phone, u_email, pro_pick);
 
                         dialogInterface.dismiss();
                     }
@@ -177,6 +211,28 @@ public class Profile extends Fragment {
         });
     }
 
+
+    // convert from bitmap to byte array
+    public static byte[] getBytes(Bitmap bitmap) {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 0, stream);
+        System.out.println("bitmap to byte array");
+        System.out.println(stream.toByteArray());
+        return stream.toByteArray();
+
+    }
+
+    // convert from byte array to bitmap
+    public static Bitmap getImage(byte[] image) {
+        System.out.println("get back bitmap");
+        System.out.println(image);
+        return BitmapFactory.decodeByteArray(image, 0, image.length);
+    }
+
+    /*public static Bitmap getImage(byte[] image){
+
+        return
+    }*/
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -188,60 +244,7 @@ public class Profile extends Fragment {
         }
     }
 
-    /*@Override
-        protected void onCreate(@Nullable Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.fragment_profile);
-           realm = Realm.getDefaultInstance();
 
-           profile_image = findViewById(R.id.profile_image);
-            first = findViewById(R.id.first);
-            last = findViewById(R.id.last);
-            email = findViewById(R.id.mail);
-            phone = findViewById(R.id.phone);
-            update = findViewById(R.id.btn_update);
-
-
-            update.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                  saveData();
-                }
-            });
-            profile_image.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                            Toast.makeText(profile.this, "Update Image",Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
-        */
-    /*private void saveData() {
-        realm.executeTransactionAsync(new Realm.Transaction() {
-            @Override
-            public void execute(Realm bgRealm) {
-                Number maxId = bgRealm.where(Profiles.class).max("Profile_id");
-                int newKey = (maxId == null) ? 1 : maxId.intValue() + 1;
-                Profiles profiles = bgRealm.createObject(Profiles.class, newKey);
-                profiles.setProfile_email(email.getText().toString());
-                profiles.setProfile_fname(first.getText().toString());
-                profiles.setProfile_lname(last.getText().toString());
-                //profiles.setProfile_phone(phone.getText().);
-
-
-            }
-        }, new Realm.Transaction.OnSuccess() {
-            @Override
-            public void onSuccess() {
-                Toast.makeText(profile.this, "Success", Toast.LENGTH_LONG).show();
-            }
-        }, new Realm.Transaction.OnError() {
-            @Override
-            public void onError(Throwable error) {
-                Toast.makeText(profile.this, "Fail", Toast.LENGTH_LONG).show();
-            }
-        });
-    }*/
 }
 
 
