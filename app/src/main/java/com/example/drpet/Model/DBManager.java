@@ -11,7 +11,7 @@ public class DBManager {
 
     private Context context;
 
-    private SQLiteDatabase database;
+    private SQLiteDatabase database,d2;
 
     public DBManager(Context c) {
         context = c;
@@ -37,9 +37,28 @@ public class DBManager {
         database.insert(DatabaseHelper.TABLE_NAME, null, contentValue);
     }
 
+    public void insertIntoPayment(String cardName, String cardNumber, String expiry, String cvv) {
+        ContentValues contentValue = new ContentValues();
+        contentValue.put(DatabaseHelper.cardName, cardName);
+        contentValue.put(DatabaseHelper.cardNumber, cardNumber);
+        contentValue.put(DatabaseHelper.expiry, expiry);
+        contentValue.put(DatabaseHelper.cvv, cvv);
+
+        database.insert(DatabaseHelper.TABLE_PAYMENT, null, contentValue);
+    }
+
+
     public Cursor fetch() {
         String[] columns = new String[] {DatabaseHelper.fName, DatabaseHelper.lName, DatabaseHelper.email, DatabaseHelper.phone };
         Cursor cursor = database.query(DatabaseHelper.TABLE_NAME, columns, null, null, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+        return cursor;
+    }
+    public Cursor fetchFromPayment() {
+        String[] columns = new String[] {DatabaseHelper.cardName, DatabaseHelper.cardNumber, DatabaseHelper.expiry, DatabaseHelper.cvv };
+        Cursor cursor = database.query(DatabaseHelper.TABLE_PAYMENT, columns, null, null, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
         }
