@@ -29,7 +29,7 @@ public class Profile extends Fragment {
 
     /*ImageView profile_image;
     TextView first;
-    TextView last;
+    TextView last;//413 dimple
     TextView email;
     TextView phone;
     Button update;*/
