@@ -37,7 +37,6 @@ public class DBManager {
 
 
         database.insert(DatabaseHelper.TABLE_NAME, null, contentValue);
-        System.out.println(image);
     }
 
     public Cursor fetch() {

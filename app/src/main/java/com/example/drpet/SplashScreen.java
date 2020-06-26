@@ -19,7 +19,7 @@ public class SplashScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Intent i = new Intent(this, LoginActivity.class);
+        Intent i = new Intent(this, SignupActivity.class);
         startActivity(i);
 
         overridePendingTransition(R.anim.fade_in,R.anim.fade_out);

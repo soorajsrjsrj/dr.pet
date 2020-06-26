@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,12 +35,17 @@ public class SignupActivity extends AppCompatActivity {
         dbManager.open();
         Cursor cursor = dbManager.fetch();
 
+
         final EditText s_email = findViewById(R.id.signup_email);
         final EditText s_fname = findViewById(R.id.signup_fname);
         final EditText s_lname = findViewById(R.id.signup_lname);
         final EditText s_phone = findViewById(R.id.signup_phone);
         final EditText s_pwd = findViewById(R.id.signup_pwd);
         Button signup = findViewById(R.id.btn_signup);
+
+        final String email = s_email.getText().toString().trim();
+
+        final String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+.[a-z]+";
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,25 +70,26 @@ public class SignupActivity extends AppCompatActivity {
                     s_pwd.setError("Fname is Required");
                     s_pwd.requestFocus();
                 }
-                else if (isValidEmail(s_email.getText())){
+                else if (!Patterns.EMAIL_ADDRESS.matcher(s_email.getText().toString()).matches()){
                     s_email.setError("Email not Valid");
                     s_email.requestFocus();
                     Toast.makeText(SignupActivity.this, "Provide a valid email address", Toast.LENGTH_SHORT).show();
                 }
-                else if (isValidPassword(s_pwd.getText().toString().trim())){
-                    Toast.makeText(SignupActivity.this, "You need to have one upper case, one number and one specail character",
+                else if (s_pwd.getText().toString().length() < 6){
+                    Toast.makeText(SignupActivity.this, "Password Should be minimum six Characters",
                             Toast.LENGTH_LONG).show();
                     s_pwd.requestFocus();
-                }else if (dbHelper.checkUser(s_email.getText().toString())){
+                }/*else if (dbHelper.checkUser(s_email.getText().toString())){
                     Toast.makeText(SignupActivity.this, "This Email address is already registered", Toast.LENGTH_SHORT).show();
-                }else {
+                }*/else {
                     String email = s_email.getText().toString();
                     String fname = s_fname.getText().toString();
                     String lname = s_lname.getText().toString();
                     String phone = s_phone.getText().toString();
                     String pwd = s_pwd.getText().toString();
 
-                    dbManager.insert(fname,lname, phone, email, pwd)    ;
+//                    dbManager.insert(fname,lname, phone, email, pwd);
+                    Toast.makeText(SignupActivity.this, "Successfully Registered", Toast.LENGTH_SHORT).show();
 
                 }
             }
@@ -90,21 +97,4 @@ public class SignupActivity extends AppCompatActivity {
 
     }
 
-    public static boolean isValidEmail(CharSequence target) {
-        return !TextUtils.isEmpty(target) && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
-    }
-
-    public boolean isValidPassword(final String password) {
-
-        Pattern pattern;
-        Matcher matcher;
-
-        final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{4,}$";
-
-        pattern = Pattern.compile(PASSWORD_PATTERN);
-        matcher = pattern.matcher(password);
-
-        return matcher.matches();
-
-    }
 }

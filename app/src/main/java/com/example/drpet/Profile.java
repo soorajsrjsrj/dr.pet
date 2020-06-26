@@ -125,8 +125,10 @@ public class Profile extends Fragment {
                 }else{
                     profile_img = null;
                 }
+                int id = 2;
+                String pwd = "";
 
-                dbManager.update(upd_first, upd_last, upd_phone, upd_email, profile_img);
+                dbManager.update(id, upd_first, upd_last, upd_phone, upd_email, pwd, profile_img);
 
                 Fragment frg = null;
                 frg = getFragmentManager().findFragmentById(R.id.fragment_container);
@@ -184,9 +186,8 @@ public class Profile extends Fragment {
                         Bitmap bt = Drawable.getBitmap();
 
                         byte[] pro_pick = getBytes(bt);
-
-                        dbManager.insert(f_name, l_name, u_phone, u_email, pro_pick);
-
+                        String pwd = "";
+                        dbManager.insert(f_name, l_name, u_phone, u_email, pwd);
                         dialogInterface.dismiss();
                     }
                 });

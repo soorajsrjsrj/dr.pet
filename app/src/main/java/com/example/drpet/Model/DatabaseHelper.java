@@ -29,7 +29,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // Creating table query
     private static final String CREATE_TABLE = "create table " + TABLE_NAME +
-            "(" + id + "INTEGER PRIMARY KEY AUTOINCREMENT, " + fName + " TEXT, " + lName + " TEXT, " + email + " TEXT, " +
+            "(" + id + " INTEGER PRIMARY KEY AUTOINCREMENT, " + fName + " TEXT, " + lName + " TEXT, " + email + " TEXT, " +
             password + " TEXT, " + phone + " INTEGER, " + profile_img + " BLOB);" ;
 
     public DatabaseHelper(Context context) {
