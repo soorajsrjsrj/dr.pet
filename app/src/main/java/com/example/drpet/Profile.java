@@ -97,11 +97,11 @@ public class Profile extends Fragment {
         Button insert = (Button) getView().findViewById(R.id.btn_insert);
         if(cursor.getCount() > 0){
             cursor.moveToFirst();
-            first.setText(cursor.getString(0));
-            last.setText(cursor.getString(1));
-            email.setText(cursor.getString(2));
-            phone.setText(cursor.getString(3));
-            byte[] image = cursor.getBlob(4);
+            first.setText(cursor.getString(1));
+            last.setText(cursor.getString(2));
+            email.setText(cursor.getString(3));
+            phone.setText(cursor.getString(4));
+            byte[] image = cursor.getBlob(6);
 
             Bitmap profile = getImage(image);
             profile_image.setImageBitmap(profile);
@@ -187,7 +187,7 @@ public class Profile extends Fragment {
 
                         byte[] pro_pick = getBytes(bt);
                         String pwd = "";
-                        dbManager.insert(f_name, l_name, u_phone, u_email, pwd);
+                        dbManager.insert(f_name, l_name, u_phone, u_email, pwd, pro_pick);
                         dialogInterface.dismiss();
                     }
                 });

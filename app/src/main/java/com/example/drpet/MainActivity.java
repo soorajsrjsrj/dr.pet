@@ -7,10 +7,13 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.drpet.Model.DBManager;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.navigation.NavigationView;
 
@@ -18,6 +21,7 @@ import com.google.android.material.navigation.NavigationView;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawer;
 
+    private DBManager dbManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +42,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     new MenuFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_mainmenu);
         }
+
+        Intent intent = getIntent();
+        String email = intent.getStringExtra("email_key");
+
+        Toast.makeText(MainActivity.this, email, Toast.LENGTH_SHORT).show();
+
+        dbManager = new DBManager(MainActivity.this);
+        dbManager.open();
+        Cursor cursor = dbManager.fetch();
 
 
 

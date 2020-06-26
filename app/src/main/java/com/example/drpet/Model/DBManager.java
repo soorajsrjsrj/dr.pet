@@ -27,7 +27,7 @@ public class DBManager {
         dbHelper.close();
     }
 
-    public void insert(String fName, String lName, String phone, String email, String password) throws SQLException {
+    public void insert(String fName, String lName, String phone, String email, String password, byte[] image) throws SQLException {
         ContentValues contentValue = new ContentValues();
         contentValue.put(DatabaseHelper.fName, fName);
         contentValue.put(DatabaseHelper.lName, lName);

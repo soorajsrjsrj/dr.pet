@@ -2,7 +2,11 @@ package com.example.drpet;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Notification;
+import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -16,6 +20,7 @@ import com.example.drpet.Model.DBManager;
 import com.example.drpet.Model.DatabaseHelper;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.io.ByteArrayOutputStream;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -87,13 +92,27 @@ public class SignupActivity extends AppCompatActivity {
                     String lname = s_lname.getText().toString();
                     String phone = s_phone.getText().toString();
                     String pwd = s_pwd.getText().toString();
+                    Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.add_image);
+                    byte[] image = getBytes(bitmap);
 
-//                    dbManager.insert(fname,lname, phone, email, pwd);
+                    dbManager.insert(fname,lname, phone, email, pwd, image);
                     Toast.makeText(SignupActivity.this, "Successfully Registered", Toast.LENGTH_SHORT).show();
-
+                    Intent intent = new Intent(SignupActivity.this, MainActivity.class);
+                    intent.putExtra("email_key", email);
+                    startActivity(intent);
                 }
             }
         });
+
+    }
+
+    // convert from bitmap to byte array
+    public static byte[] getBytes(Bitmap bitmap) {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 0, stream);
+        System.out.println("bitmap to byte array");
+        System.out.println(stream.toByteArray());
+        return stream.toByteArray();
 
     }
 
