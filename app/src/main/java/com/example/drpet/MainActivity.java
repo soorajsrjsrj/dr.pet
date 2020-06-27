@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         dbManager = new DBManager(MainActivity.this);
         dbManager.open();
-        Cursor cursor = dbManager.fetch();
+
 
 
 
@@ -78,6 +78,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new RideDetails()).commit();
                 break;
+            case R.id.nav_logout:
+                startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+                finish();
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;

@@ -40,7 +40,7 @@ public class SignupActivity extends AppCompatActivity {
 
         dbManager = new DBManager(this);
         dbManager.open();
-        Cursor cursor = dbManager.fetch();
+
 
 
         final EditText s_email = findViewById(R.id.signup_email);
@@ -49,10 +49,7 @@ public class SignupActivity extends AppCompatActivity {
         final EditText s_phone = findViewById(R.id.signup_phone);
         final EditText s_pwd = findViewById(R.id.signup_pwd);
         Button signup = findViewById(R.id.btn_signup);
-
-        final String email = s_email.getText().toString().trim();
-
-        final String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+.[a-z]+";
+        s_email.requestFocus();
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,6 +100,8 @@ public class SignupActivity extends AppCompatActivity {
                     String phone = s_phone.getText().toString();
                     String pwd = s_pwd.getText().toString();
 
+                    System.out.println(pwd);
+
                     Drawable drawable = getResources().getDrawable(R.drawable.add_image);
                     BitmapDrawable bitmapDrawable = (BitmapDrawable)drawable;
                     Bitmap bt = bitmapDrawable.getBitmap();
@@ -123,6 +122,7 @@ public class SignupActivity extends AppCompatActivity {
                     Intent intent = new Intent(SignupActivity.this, MainActivity.class);
                     intent.putExtra("email_key", email);
                     startActivity(intent);
+                    finish();
                 }
             }
         });

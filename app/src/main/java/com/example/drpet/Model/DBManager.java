@@ -86,7 +86,19 @@ public class DBManager {
         String query = "SELECT * FROM " + DatabaseHelper.TABLE_NAME + " WHERE email = '" + u_email + "'";
         Cursor cursor = database.rawQuery(query, null);
 
-        if (cursor != null){
+        if(cursor.getCount() > 0){
+            return true;
+        }
+
+
+        return false;
+    }
+
+    public boolean checkLogin(String u_email,  String u_pwd){
+        String query = "SELECT id FROM " + DatabaseHelper.TABLE_NAME + " WHERE email = '" + u_email + "' AND password = '" + u_pwd + "'";
+        Cursor cursor = database.rawQuery(query, null);
+
+        if (cursor.getCount() > 0 ){
             return true;
         }
 

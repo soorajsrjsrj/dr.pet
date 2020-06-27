@@ -47,45 +47,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    /**
-     * This method to check user exist or not
-     *
-     *
-     */
-    public boolean checkUser(String u_email) {
-        /*// array of columns to fetch
-        String[] columns = {
-                id
-        };
-        SQLiteDatabase db = this.getReadableDatabase();
-        // selection criteria
-        String selection = email + " = ?";
-        // selection argument
-        String[] selectionArgs = {u_email};
-        // query user table with condition
-        *//*
-         * Here query function is used to fetch records from user table this function works like we use sql query.
-         * SQL query equivalent to this query function is
-         * SELECT user_id FROM user WHERE user_email = 'jack@androidtutorialshub.com';
-         *//*
-        Cursor cursor = db.query(TABLE_NAME, //Table to query
-                columns,                    //columns to return
-                selection,                  //columns for the WHERE clause
-                selectionArgs,              //The values for the WHERE clause
-                null,                       //group the rows
-                null,                      //filter by row groups
-                null);                      //The sort order*/
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT id FROM " + TABLE_NAME + " WHERE " + email + " = '" + u_email + "'", null);
 
-        int cursorCount = cursor.getCount();
-        cursor.close();
-        db.close();
-        if (cursorCount > 0) {
-            return true;
-        }
-        return false;
-    }
 
     /**
      * This method to check user exist or not
