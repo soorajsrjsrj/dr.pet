@@ -50,32 +50,34 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     /**
      * This method to check user exist or not
      *
-     * @param email
-     * @return true/false
+     *
      */
-    public boolean checkUser(String email) {
-        // array of columns to fetch
+    public boolean checkUser(String u_email) {
+        /*// array of columns to fetch
         String[] columns = {
                 id
         };
         SQLiteDatabase db = this.getReadableDatabase();
         // selection criteria
-        String selection = id + " = ?";
+        String selection = email + " = ?";
         // selection argument
-        String[] selectionArgs = {email};
+        String[] selectionArgs = {u_email};
         // query user table with condition
-        /*
+        *//*
          * Here query function is used to fetch records from user table this function works like we use sql query.
          * SQL query equivalent to this query function is
          * SELECT user_id FROM user WHERE user_email = 'jack@androidtutorialshub.com';
-         */
+         *//*
         Cursor cursor = db.query(TABLE_NAME, //Table to query
                 columns,                    //columns to return
                 selection,                  //columns for the WHERE clause
                 selectionArgs,              //The values for the WHERE clause
                 null,                       //group the rows
                 null,                      //filter by row groups
-                null);                      //The sort order
+                null);                      //The sort order*/
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT id FROM " + TABLE_NAME + " WHERE " + email + " = '" + u_email + "'", null);
+
         int cursorCount = cursor.getCount();
         cursor.close();
         db.close();
@@ -88,18 +90,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     /**
      * This method to check user exist or not
      *
-     * @param email
-     * @param password
-     * @return true/false
+     *
      */
-    public boolean checkUser(String email, String password) {
+    public boolean checkUser(String u_email, String u_password) {
         // array of columns to fetch
         String[] columns = {
                 id
         };
         SQLiteDatabase db = this.getReadableDatabase();
         // selection criteria
-        String selection = id + " = ?" + " AND " + password + " = ?";
+        String selection = email + " = ?" + " AND " + password + " = ?";
         // selection arguments
         String[] selectionArgs = {email, password};
         // query user table with conditions

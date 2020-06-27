@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -71,6 +73,10 @@ public class SignupActivity extends AppCompatActivity {
                     s_phone.setError("Contact No. is Required");
                     s_phone.requestFocus();
                 }
+                else if (s_phone.getText().toString().length() < 10){
+                    s_phone.setError("Contact No. must be 10 digits");
+                    s_phone.requestFocus();
+                }
                 else if (s_pwd.getText().toString().equals("")){
                     s_pwd.setError("Fname is Required");
                     s_pwd.requestFocus();
@@ -81,21 +87,38 @@ public class SignupActivity extends AppCompatActivity {
                     Toast.makeText(SignupActivity.this, "Provide a valid email address", Toast.LENGTH_SHORT).show();
                 }
                 else if (s_pwd.getText().toString().length() < 6){
-                    Toast.makeText(SignupActivity.this, "Password Should be minimum six Characters",
-                            Toast.LENGTH_LONG).show();
+//                    Toast.makeText(SignupActivity.this, "Password Should be minimum six Characters" Toast.LENGTH_LONG).show();
+                    s_pwd.setError("Password Should be minimum six Characters");
                     s_pwd.requestFocus();
-                }/*else if (dbHelper.checkUser(s_email.getText().toString())){
-                    Toast.makeText(SignupActivity.this, "This Email address is already registered", Toast.LENGTH_SHORT).show();
-                }*/else {
+                }
+                else if (dbManager.checkUserExist(s_email.getText().toString())){
+                    s_email.setError("This Email address is already registered");
+                    s_email.requestFocus();
+//                    Toast.makeText(SignupActivity.this, "This Email address is already registered", Toast.LENGTH_SHORT).show();
+                }
+                else {
                     String email = s_email.getText().toString();
                     String fname = s_fname.getText().toString();
                     String lname = s_lname.getText().toString();
                     String phone = s_phone.getText().toString();
                     String pwd = s_pwd.getText().toString();
-                    Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.add_image);
-                    byte[] image = getBytes(bitmap);
 
-                    dbManager.insert(fname,lname, phone, email, pwd, image);
+                    Drawable drawable = getResources().getDrawable(R.drawable.add_image);
+                    BitmapDrawable bitmapDrawable = (BitmapDrawable)drawable;
+                    Bitmap bt = bitmapDrawable.getBitmap();
+
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    bt.compress(Bitmap.CompressFormat.PNG, 50, stream);
+                    byte[] bitmapData = stream.toByteArray();
+
+
+//                    byte[] image = getBytes(bt);
+                    System.out.println("Blob:" + bitmapData);
+
+                    /*Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.add_image);
+                    byte[] image = getBytes(bitmap);*/
+
+                    dbManager.insert(fname,lname, phone, email, pwd, bitmapData);
                     Toast.makeText(SignupActivity.this, "Successfully Registered", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(SignupActivity.this, MainActivity.class);
                     intent.putExtra("email_key", email);

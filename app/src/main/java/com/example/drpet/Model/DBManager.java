@@ -34,13 +34,15 @@ public class DBManager {
         contentValue.put(DatabaseHelper.phone, phone);
         contentValue.put(DatabaseHelper.email, email);
         contentValue.put(DatabaseHelper.password, password);
+        contentValue.put(DatabaseHelper.profile_img, image);
 
 
         database.insert(DatabaseHelper.TABLE_NAME, null, contentValue);
     }
 
     public Cursor fetch() {
-        String[] columns = new String[] {DatabaseHelper.id, DatabaseHelper.fName, DatabaseHelper.lName, DatabaseHelper.email, DatabaseHelper.password, DatabaseHelper.phone, DatabaseHelper.profile_img };
+        String[] columns = new String[] {DatabaseHelper.id, DatabaseHelper.fName, DatabaseHelper.lName,
+                DatabaseHelper.email, DatabaseHelper.password, DatabaseHelper.phone, DatabaseHelper.profile_img };
         Cursor cursor = database.query(DatabaseHelper.TABLE_NAME, columns, null, null, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
@@ -48,16 +50,30 @@ public class DBManager {
         return cursor;
     }
 
-    public void update(int id, String fName, String lName, String phone, String email, String password, byte[] image) throws SQLException {
+    public  Cursor fetchData(){
+        String[] columns = new String[] {DatabaseHelper.id, DatabaseHelper.fName,
+                DatabaseHelper.lName, DatabaseHelper.email, DatabaseHelper.password, DatabaseHelper.phone, DatabaseHelper.profile_img };
+
+        /*String selection = DatabaseHelper.id + " = ?";
+        String[] selectionArgs = {"" + id};
+        Cursor cursor = database.query(DatabaseHelper.TABLE_NAME, columns, selection, selectionArgs,null,null,null);*/
+
+        String query = "SELECT * FROM " + DatabaseHelper.TABLE_NAME + " WHERE " + DatabaseHelper.id + " = 1";
+        Cursor cursor = database.rawQuery(query, null);
+
+        if(cursor != null){
+            cursor.moveToFirst();
+        }
+        return cursor;
+    }
+
+    public void update(int id, String fName, String lName, String phone, byte[] image) throws SQLException {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(DatabaseHelper.id, id);
         contentValues.put(DatabaseHelper.fName, fName);
         contentValues.put(DatabaseHelper.lName, lName);
-        contentValues.put(DatabaseHelper.email, email);
-        contentValues.put(DatabaseHelper.password, password);
         contentValues.put(DatabaseHelper.phone, phone);
         contentValues.put(DatabaseHelper.profile_img, image);
-        database.update(DatabaseHelper.TABLE_NAME, contentValues, DatabaseHelper.email + " = '" + email + "'" , null);
+        database.update(DatabaseHelper.TABLE_NAME, contentValues, DatabaseHelper.id + " = '" + id + "'" , null);
         System.out.println(image);
     }
 
@@ -65,6 +81,17 @@ public class DBManager {
         database.delete(DatabaseHelper.TABLE_NAME, DatabaseHelper.email + "=" + email, null);
     }
 
+    public boolean checkUserExist(String u_email){
+
+        String query = "SELECT * FROM " + DatabaseHelper.TABLE_NAME + " WHERE email = '" + u_email + "'";
+        Cursor cursor = database.rawQuery(query, null);
+
+        if (cursor != null){
+            return true;
+        }
+
+        return false;
+    }
 
 }
 

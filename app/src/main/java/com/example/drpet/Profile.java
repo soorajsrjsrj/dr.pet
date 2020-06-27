@@ -84,7 +84,7 @@ public class Profile extends Fragment {
 
         dbManager = new DBManager(getActivity().getApplicationContext());
         dbManager.open();
-        Cursor cursor = dbManager.fetch();
+        Cursor cursor = dbManager.fetchData();
 
 
 
@@ -100,8 +100,14 @@ public class Profile extends Fragment {
             first.setText(cursor.getString(1));
             last.setText(cursor.getString(2));
             email.setText(cursor.getString(3));
-            phone.setText(cursor.getString(4));
+            phone.setText(cursor.getString(5));
             byte[] image = cursor.getBlob(6);
+
+            /*System.out.println(cursor.getString(1));
+            System.out.println(cursor.getString(2));
+            System.out.println(cursor.getString(3));
+            System.out.println(cursor.getString(5));
+            System.out.println(image);*/
 
             Bitmap profile = getImage(image);
             profile_image.setImageBitmap(profile);
@@ -125,10 +131,10 @@ public class Profile extends Fragment {
                 }else{
                     profile_img = null;
                 }
-                int id = 2;
-                String pwd = "";
+                int id = 1;
 
-                dbManager.update(id, upd_first, upd_last, upd_phone, upd_email, pwd, profile_img);
+
+                dbManager.update(id, upd_first, upd_last, upd_phone,  profile_img);
 
                 Fragment frg = null;
                 frg = getFragmentManager().findFragmentById(R.id.fragment_container);
