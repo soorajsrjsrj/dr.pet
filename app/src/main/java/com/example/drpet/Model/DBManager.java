@@ -50,10 +50,10 @@ public class DBManager {
         return cursor;
     }
 
-    public  Cursor fetchUserData(){
+    public  Cursor fetchUserData(int user_id){
 
 
-        String query = "SELECT * FROM " + DatabaseHelper.TABLE_NAME + " WHERE " + DatabaseHelper.id + " = 1";
+        String query = "SELECT * FROM " + DatabaseHelper.TABLE_NAME + " WHERE " + DatabaseHelper.id + " = " + user_id;
         Cursor cursor = database.rawQuery(query, null);
 
         if(cursor != null){

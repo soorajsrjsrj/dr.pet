@@ -61,8 +61,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         SharedPreferences.Editor edit = pref.edit();
 
         edit.putInt("key_id", u_id);
-
-
+        edit.commit();
 
 
     }

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -82,9 +83,12 @@ public class Profile extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        SharedPreferences pref = getActivity().getApplicationContext().getSharedPreferences("id_pref", Context.MODE_PRIVATE);
+        int user_id = pref.getInt("key_id", 0);
+
         dbManager = new DBManager(getActivity().getApplicationContext());
         dbManager.open();
-        Cursor cursor = dbManager.fetchUserData();
+        Cursor cursor = dbManager.fetchUserData(user_id);
 
 
 
