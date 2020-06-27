@@ -54,15 +54,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         dbManager.open();
         Cursor cursor = dbManager.fetchId(email);
 
-        int u_id = cursor.getInt(0);
-        System.out.println(u_id);
-
-
         pref = getApplicationContext().getSharedPreferences("id_pref", MODE_PRIVATE);
         SharedPreferences.Editor edit = pref.edit();
 
-        edit.putInt("key_id", u_id);
-        edit.commit();
+        if (cursor.getCount() > 0){
+            int u_id = cursor.getInt(0);
+            System.out.println(u_id);
+
+            edit.putInt("key_id", u_id);
+            edit.commit();
+        }
+
+
 
 
     }
