@@ -8,6 +8,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -50,6 +51,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         dbManager = new DBManager(MainActivity.this);
         dbManager.open();
+        Cursor cursor = dbManager.fetchId(email);
+
+        int u_id = cursor.getInt(0);
+        System.out.println(u_id);
+
+
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("id_pref", MODE_PRIVATE);
+        SharedPreferences.Editor edit = pref.edit();
+
+        edit.putInt("key_id", u_id);
 
 
 

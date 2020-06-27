@@ -40,23 +40,18 @@ public class DBManager {
         database.insert(DatabaseHelper.TABLE_NAME, null, contentValue);
     }
 
-    public Cursor fetch() {
-        String[] columns = new String[] {DatabaseHelper.id, DatabaseHelper.fName, DatabaseHelper.lName,
-                DatabaseHelper.email, DatabaseHelper.password, DatabaseHelper.phone, DatabaseHelper.profile_img };
-        Cursor cursor = database.query(DatabaseHelper.TABLE_NAME, columns, null, null, null, null, null);
+    public Cursor fetchId(String u_email) {
+        String query = "SELECT id FROM " + DatabaseHelper.TABLE_NAME + " WHERE " + DatabaseHelper.email + " = '" + u_email + "'";
+        Cursor cursor = database.rawQuery(query, null);
+
         if (cursor != null) {
             cursor.moveToFirst();
         }
         return cursor;
     }
 
-    public  Cursor fetchData(){
-        String[] columns = new String[] {DatabaseHelper.id, DatabaseHelper.fName,
-                DatabaseHelper.lName, DatabaseHelper.email, DatabaseHelper.password, DatabaseHelper.phone, DatabaseHelper.profile_img };
+    public  Cursor fetchUserData(){
 
-        /*String selection = DatabaseHelper.id + " = ?";
-        String[] selectionArgs = {"" + id};
-        Cursor cursor = database.query(DatabaseHelper.TABLE_NAME, columns, selection, selectionArgs,null,null,null);*/
 
         String query = "SELECT * FROM " + DatabaseHelper.TABLE_NAME + " WHERE " + DatabaseHelper.id + " = 1";
         Cursor cursor = database.rawQuery(query, null);

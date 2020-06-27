@@ -84,7 +84,7 @@ public class Profile extends Fragment {
 
         dbManager = new DBManager(getActivity().getApplicationContext());
         dbManager.open();
-        Cursor cursor = dbManager.fetchData();
+        Cursor cursor = dbManager.fetchUserData();
 
 
 
