@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout drawer;
 
     private DBManager dbManager;
+    SharedPreferences pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         System.out.println(u_id);
 
 
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("id_pref", MODE_PRIVATE);
+        pref = getApplicationContext().getSharedPreferences("id_pref", MODE_PRIVATE);
         SharedPreferences.Editor edit = pref.edit();
 
         edit.putInt("key_id", u_id);
@@ -89,6 +90,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         new RideDetails()).commit();
                 break;
             case R.id.nav_logout:
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putInt("key_id", 0);
+                editor.commit();
+
                 startActivity(new Intent(getApplicationContext(),LoginActivity.class));
                 finish();
         }
