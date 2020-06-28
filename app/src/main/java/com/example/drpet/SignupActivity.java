@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.drpet.Model.DBManager;
@@ -48,7 +49,7 @@ public class SignupActivity extends AppCompatActivity {
         final EditText s_lname = findViewById(R.id.signup_lname);
         final EditText s_phone = findViewById(R.id.signup_phone);
         final EditText s_pwd = findViewById(R.id.signup_pwd);
-        Button signup = findViewById(R.id.btn_signup);
+        TextView signup = findViewById(R.id.btn_signup);
         s_email.requestFocus();
 
         signup.setOnClickListener(new View.OnClickListener() {
