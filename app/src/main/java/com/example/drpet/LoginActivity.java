@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.drpet.Model.DBManager;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -28,7 +29,8 @@ public class LoginActivity extends AppCompatActivity {
 
         final EditText l_email = findViewById(R.id.login_email);
         final EditText l_pwd = findViewById(R.id.login_pwd);
-        final Button login_btn = findViewById(R.id.btn_login);
+        final FloatingActionButton login_btn = findViewById(R.id.btn_login);
+//        final Button login_btn = findViewById(R.id.btn_login);
         final TextView l_reg = findViewById(R.id.register_link);
 
 
@@ -49,6 +51,9 @@ public class LoginActivity extends AppCompatActivity {
                 else if (TextUtils.isEmpty(l_pwd.getText().toString())){
                     l_pwd.setError("Password is Required");
                     l_pwd.requestFocus();
+                }
+                else if(!dbManager.checkUserExist(l_email.getText().toString())){
+                    l_email.setError("This Email is not registered yet");
                 }
                 else{
                     final String login_email = l_email.getText().toString();
