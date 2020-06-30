@@ -98,7 +98,7 @@ public class Profile extends Fragment {
         final TextView email = (TextView) getView().findViewById(R.id.mail);
         final TextView phone = (TextView) getView().findViewById(R.id.phone);
         Button update = (Button) getView().findViewById(R.id.btn_update);
-        Button insert = (Button) getView().findViewById(R.id.btn_insert);
+//        Button insert = (Button) getView().findViewById(R.id.btn_insert);
         if(cursor.getCount() > 0){
             cursor.moveToFirst();
             first.setText(cursor.getString(1));
@@ -116,7 +116,7 @@ public class Profile extends Fragment {
             Bitmap profile = getImage(image);
             profile_image.setImageBitmap(profile);
 
-            insert.setVisibility(View.INVISIBLE);
+//            insert.setVisibility(View.INVISIBLE);
         }
 
         update.setOnClickListener(new View.OnClickListener() {
@@ -140,12 +140,15 @@ public class Profile extends Fragment {
 
                 dbManager.update(id, upd_first, upd_last, upd_phone,  profile_img);
 
-                Fragment frg = null;
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new ProfileDetailFragment()).commit();
+
+                /*Fragment frg = null;
                 frg = getFragmentManager().findFragmentById(R.id.fragment_container);
                 final FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.detach(frg);
                 ft.attach(frg);
-                ft.commit();
+                ft.commit();*/
 
                 Toast.makeText(getActivity().getApplicationContext(), "Updated Successfully", Toast.LENGTH_SHORT).show();
             }
@@ -162,7 +165,7 @@ public class Profile extends Fragment {
 
 
 
-        insert.setOnClickListener(new View.OnClickListener() {
+        /*insert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                Toast.makeText(getActivity().getApplicationContext(), "Insert Button", Toast.LENGTH_SHORT).show();
@@ -207,7 +210,7 @@ public class Profile extends Fragment {
 //                linearLayout.addView(v);
             }
 
-        });
+        });*/
 
 
         profile_image.setOnClickListener(new View.OnClickListener() {
@@ -251,7 +254,6 @@ public class Profile extends Fragment {
         if(resultCode == Activity.RESULT_OK){
             Uri fileUri = data.getData();
             profile_image.setImageURI(fileUri);
-
         }
     }
 

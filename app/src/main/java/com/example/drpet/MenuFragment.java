@@ -99,7 +99,7 @@ public class MenuFragment extends Fragment implements OnMapReadyCallback, Google
             public void onClick(View view) {
                 assert getFragmentManager() != null;
                 getFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Profile()).commit();
+                        new ProfileDetailFragment()).commit();
             }
         });
     }

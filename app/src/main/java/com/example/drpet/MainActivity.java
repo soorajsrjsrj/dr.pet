@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_profile:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Profile()).commit();
+                        new ProfileDetailFragment()).commit();
                 break;
             case R.id.nav_pethospitalnear:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
