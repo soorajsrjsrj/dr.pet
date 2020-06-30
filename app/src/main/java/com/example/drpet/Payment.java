@@ -79,7 +79,8 @@ public class Payment extends Fragment {
                 String p_cvv = cvvNumb.getText().toString();
 
 
-                dbManager.insertIntoPayment(p_name, p_number, p_expiry, p_cvv);
+                dbManager.insertintopayment(p_name, p_number, p_expiry, p_cvv);
+
 
 
             }

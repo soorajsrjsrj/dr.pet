@@ -27,6 +27,7 @@ public class DBManager {
         dbHelper.close();
     }
 
+
     public void insert(String fName, String lName, String phone, String email, String password, byte[] image) throws SQLException {
         ContentValues contentValue = new ContentValues();
         contentValue.put(DatabaseHelper.fName, fName);
@@ -39,6 +40,17 @@ public class DBManager {
 
         database.insert(DatabaseHelper.TABLE_NAME, null, contentValue);
     }
+// insert payment method
+    public void insertintopayment(String cName, String cNumber, String Expiry, String Cvv) throws SQLException {
+        ContentValues contentValue = new ContentValues();
+        contentValue.put(DatabaseHelper.cardName, cName);
+        contentValue.put(DatabaseHelper.cardNumber, cNumber);
+        contentValue.put(DatabaseHelper.expiry, Expiry);
+        contentValue.put(DatabaseHelper.cvv, Cvv);
+        database.insert(DatabaseHelper.TABLE_PAYMENT, null, contentValue);
+    }
+
+
 
     public Cursor fetchId(String u_email) {
         String query = "SELECT id FROM " + DatabaseHelper.TABLE_NAME + " WHERE " + DatabaseHelper.email + " = '" + u_email + "'";
