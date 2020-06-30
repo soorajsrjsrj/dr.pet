@@ -11,7 +11,7 @@ public class DBManager {
 
     private Context context;
 
-    private SQLiteDatabase database,d2;
+    private SQLiteDatabase database;
 
     public DBManager(Context c) {
         context = c;
@@ -27,55 +27,77 @@ public class DBManager {
         dbHelper.close();
     }
 
-    public void insert(String fName, String lName, String phone, String email) {
+    public void insert(String fName, String lName, String phone, String email, String password, byte[] image) throws SQLException {
         ContentValues contentValue = new ContentValues();
         contentValue.put(DatabaseHelper.fName, fName);
         contentValue.put(DatabaseHelper.lName, lName);
         contentValue.put(DatabaseHelper.phone, phone);
         contentValue.put(DatabaseHelper.email, email);
+        contentValue.put(DatabaseHelper.password, password);
+        contentValue.put(DatabaseHelper.profile_img, image);
+
 
         database.insert(DatabaseHelper.TABLE_NAME, null, contentValue);
     }
 
-    public void insertIntoPayment(String cardName, String cardNumber, String expiry, String cvv) {
-        ContentValues contentValue = new ContentValues();
-        contentValue.put(DatabaseHelper.cardName, cardName);
-        contentValue.put(DatabaseHelper.cardNumber, cardNumber);
-        contentValue.put(DatabaseHelper.expiry, expiry);
-        contentValue.put(DatabaseHelper.cvv, cvv);
+    public Cursor fetchId(String u_email) {
+        String query = "SELECT id FROM " + DatabaseHelper.TABLE_NAME + " WHERE " + DatabaseHelper.email + " = '" + u_email + "'";
+        Cursor cursor = database.rawQuery(query, null);
 
-        database.insert(DatabaseHelper.TABLE_PAYMENT, null, contentValue);
-    }
-
-
-    public Cursor fetch() {
-        String[] columns = new String[] {DatabaseHelper.fName, DatabaseHelper.lName, DatabaseHelper.email, DatabaseHelper.phone };
-        Cursor cursor = database.query(DatabaseHelper.TABLE_NAME, columns, null, null, null, null, null);
-        if (cursor != null) {
-            cursor.moveToFirst();
-        }
-        return cursor;
-    }
-    public Cursor fetchFromPayment() {
-        String[] columns = new String[] {DatabaseHelper.cardName, DatabaseHelper.cardNumber, DatabaseHelper.expiry, DatabaseHelper.cvv };
-        Cursor cursor = database.query(DatabaseHelper.TABLE_PAYMENT, columns, null, null, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
         }
         return cursor;
     }
 
-    public void update(String fName, String lName, String phone, String email) {
+    public  Cursor fetchUserData(int user_id){
+
+
+        String query = "SELECT * FROM " + DatabaseHelper.TABLE_NAME + " WHERE " + DatabaseHelper.id + " = " + user_id;
+        Cursor cursor = database.rawQuery(query, null);
+
+        if(cursor != null){
+            cursor.moveToFirst();
+        }
+        return cursor;
+    }
+
+    public void update(int id, String fName, String lName, String phone, byte[] image) throws SQLException {
         ContentValues contentValues = new ContentValues();
         contentValues.put(DatabaseHelper.fName, fName);
         contentValues.put(DatabaseHelper.lName, lName);
-        contentValues.put(DatabaseHelper.email, email);
         contentValues.put(DatabaseHelper.phone, phone);
-        database.update(DatabaseHelper.TABLE_NAME, contentValues, DatabaseHelper.email + " = '" + email + "'" , null);
+        contentValues.put(DatabaseHelper.profile_img, image);
+        database.update(DatabaseHelper.TABLE_NAME, contentValues, DatabaseHelper.id + " = '" + id + "'" , null);
+        System.out.println(image);
     }
 
     public void delete(String email) {
         database.delete(DatabaseHelper.TABLE_NAME, DatabaseHelper.email + "=" + email, null);
+    }
+
+    public boolean checkUserExist(String u_email){
+
+        String query = "SELECT * FROM " + DatabaseHelper.TABLE_NAME + " WHERE email = '" + u_email + "'";
+        Cursor cursor = database.rawQuery(query, null);
+
+        if(cursor.getCount() > 0){
+            return true;
+        }
+
+
+        return false;
+    }
+
+    public boolean checkLogin(String u_email,  String u_pwd){
+        String query = "SELECT id FROM " + DatabaseHelper.TABLE_NAME + " WHERE email = '" + u_email + "' AND password = '" + u_pwd + "'";
+        Cursor cursor = database.rawQuery(query, null);
+
+        if (cursor.getCount() > 0 ){
+            return true;
+        }
+
+        return false;
     }
 
 }

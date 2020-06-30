@@ -7,16 +7,23 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.drpet.Model.DBManager;
+import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.navigation.NavigationView;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawer;
 
+    private DBManager dbManager;
+    SharedPreferences pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +44,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     new MenuFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_mainmenu);
         }
+
+        Intent intent = getIntent();
+        String email = intent.getStringExtra("email_key");
+
+        Toast.makeText(MainActivity.this, email, Toast.LENGTH_SHORT).show();
+
+        dbManager = new DBManager(MainActivity.this);
+        dbManager.open();
+        Cursor cursor = dbManager.fetchId(email);
+
+        pref = getApplicationContext().getSharedPreferences("id_pref", MODE_PRIVATE);
+        SharedPreferences.Editor edit = pref.edit();
+
+        if (cursor.getCount() > 0){
+            int u_id = cursor.getInt(0);
+            System.out.println(u_id);
+
+            edit.putInt("key_id", u_id);
+            edit.commit();
+        }
+
+
+
+
     }
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -47,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_profile:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Profile()).commit();
+                        new ProfileDetailFragment()).commit();
                 break;
             case R.id.nav_pethospitalnear:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
@@ -61,6 +92,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new RideDetails()).commit();
                 break;
+            case R.id.nav_logout:
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putInt("key_id", 0);
+                editor.commit();
+
+                startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+                finish();
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;

@@ -40,6 +40,7 @@
 
         <LinearLayout
 
+            android:id="@+id/profile_page"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
@@ -48,9 +49,9 @@
             <ImageView
                 android:layout_width="64dp"
                 android:layout_height="64dp"
+                android:layout_margin="5dp"
                 android:background="@drawable/cerclebackgroundpurple"
                 android:padding="10dp"
-                android:layout_margin="5dp"
                 android:src="@drawable/ic_profile" />
 
             <TextView
@@ -91,6 +92,7 @@
 
         <LinearLayout
 
+            android:id="@+id/payment_page"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
@@ -99,9 +101,9 @@
             <ImageView
                 android:layout_width="64dp"
                 android:layout_height="64dp"
+                android:layout_margin="5dp"
                 android:background="@drawable/cerclebackgroundyello"
                 android:padding="10dp"
-                android:layout_margin="5dp"
                 android:src="@drawable/ic_payment" />
 
             <TextView
