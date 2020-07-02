@@ -21,11 +21,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String phone = "phone";
     public static final String profile_img = "profile_img";
 
+    public static final String card_Id = "card_id";
     public static final String cardName = "cardName";
     public static final String cardNumber = "cardNumber";
     public static final String expiry = "expiry";
     public static final String cvv = "cvv";
-
+    public static final String user_id = "user_id";
 
 
     // Database Information
@@ -39,7 +40,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             "(" + id + " INTEGER PRIMARY KEY AUTOINCREMENT, " + fName + " TEXT, " + lName + " TEXT, " + email + " TEXT, " +
             password + " TEXT, " + phone + " INTEGER, " + profile_img + " BLOB);" ;
 
-    private static final String CREATE_PAYMENT = "create table " + TABLE_PAYMENT + "(" + cardName + " TEXT, " + cardNumber + " INTEGER, " + expiry + " INTEGER, " + cvv + " INTEGER);" ;
+    private static final String CREATE_PAYMENT = "create table " + TABLE_PAYMENT +
+            "(" + card_Id + " INTEGER PRIMARY KEY AUTOINCREMENT, " + cardName + " TEXT, " +
+            cardNumber + " INTEGER, " + expiry + " INTEGER, " + cvv + " INTEGER, " +
+            user_id + " INTEGER, FOREIGN KEY(" + user_id + ") REFERENCES  " + TABLE_NAME + " ( " + id + " ));" ;
 
     public DatabaseHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -47,9 +51,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(CREATE_PAYMENT);
         db.execSQL(CREATE_TABLE);
 
+        db.execSQL(CREATE_PAYMENT);
     }
 
     @Override
@@ -58,8 +62,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PAYMENT);
         onCreate(db);
     }
-
-
 
     /**
      * This method to check user exist or not

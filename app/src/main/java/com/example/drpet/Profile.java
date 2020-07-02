@@ -84,7 +84,7 @@ public class Profile extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         SharedPreferences pref = getActivity().getApplicationContext().getSharedPreferences("id_pref", Context.MODE_PRIVATE);
-        int user_id = pref.getInt("key_id", 0);
+        final int user_id = pref.getInt("key_id", 0);
 
         dbManager = new DBManager(getActivity().getApplicationContext());
         dbManager.open();
@@ -135,7 +135,7 @@ public class Profile extends Fragment {
                 }else{
                     profile_img = null;
                 }
-                int id = 1;
+                int id = user_id;
 
 
                 dbManager.update(id, upd_first, upd_last, upd_phone,  profile_img);

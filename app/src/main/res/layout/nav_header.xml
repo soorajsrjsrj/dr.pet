@@ -10,10 +10,12 @@
 
 <!--    android:background="@color/colorAccent"-->
     <ImageView
+        android:id="@+id/nav_user_profile_pic"
         android:layout_width="80sp"
         android:layout_height="80sp"
         android:src="@drawable/background_splash" />
     <TextView
+        android:id="@+id/nav_user_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="8dp"
@@ -21,6 +23,7 @@
         android:textColor="@color/black"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
     <TextView
+        android:id="@+id/nav_user_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="youremailid@gmail.com"

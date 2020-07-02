@@ -40,13 +40,17 @@ public class DBManager {
 
         database.insert(DatabaseHelper.TABLE_NAME, null, contentValue);
     }
+
 // insert payment method
-    public void insertintopayment(String cName, String cNumber, String Expiry, String Cvv) throws SQLException {
+    public void insertintopayment(String cName, String cNumber, String Expiry, String Cvv, int user_id) throws SQLException {
         ContentValues contentValue = new ContentValues();
         contentValue.put(DatabaseHelper.cardName, cName);
         contentValue.put(DatabaseHelper.cardNumber, cNumber);
         contentValue.put(DatabaseHelper.expiry, Expiry);
         contentValue.put(DatabaseHelper.cvv, Cvv);
+        contentValue.put(DatabaseHelper.user_id, user_id);
+
+
         database.insert(DatabaseHelper.TABLE_PAYMENT, null, contentValue);
     }
 

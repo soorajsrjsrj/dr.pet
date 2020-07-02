@@ -7,11 +7,17 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.drpet.Model.DBManager;
@@ -25,6 +31,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DBManager dbManager;
     SharedPreferences pref;
 
+    ImageView nav_profile;
+    TextView fullname, nav_email;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +44,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View header = navigationView.getHeaderView(0);
+
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -47,6 +58,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         Intent intent = getIntent();
         String email = intent.getStringExtra("email_key");
+
+        nav_profile = header.findViewById(R.id.nav_user_profile_pic);
+        fullname = header.findViewById(R.id.nav_user_name);
+        nav_email = header.findViewById(R.id.nav_user_email);
 
         Toast.makeText(MainActivity.this, email, Toast.LENGTH_SHORT).show();
 
@@ -65,10 +80,36 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             edit.commit();
         }
 
+        SharedPreferences pref1 = getApplicationContext().getSharedPreferences("id_pref", Context.MODE_PRIVATE);
+        final int user_id = pref1.getInt("key_id", 0);
+        Cursor cursor1 = dbManager.fetchUserData(user_id);
+
+        if (cursor1.getCount() > 0){
+
+            String user_email = cursor1.getString(3);
+            nav_email.setText(user_email.toString());
+
+            System.out.println(cursor1.getString(3));
+            String full = cursor1.getString(1) + " " + cursor1.getString(2);
+            fullname.setText(full);
+
+            byte[] pro_pic = cursor1.getBlob(6);
+            System.out.println(pro_pic);
+
+            Bitmap bt = getImage(pro_pic);
+            nav_profile.setImageBitmap(bt);
+        }
 
 
 
     }
+
+    public static Bitmap getImage(byte[] image) {
+        System.out.println("get back bitmap");
+        System.out.println(image);
+        return BitmapFactory.decodeByteArray(image, 0, image.length);
+    }
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
