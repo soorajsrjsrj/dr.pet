@@ -18,17 +18,18 @@
             android:layout_width="match_parent"
             android:layout_height="131dp"
             android:layout_marginBottom="0dp"
-            android:background="#1accff"
             android:padding="10dp">
 
-
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/profile_image"
                 android:layout_width="112dp"
                 android:layout_height="110dp"
                 android:layout_centerInParent="true"
                 android:clickable="true"
-                android:src="@drawable/dp" />
+                android:src="@drawable/dp"
+                app:civ_border_width="2dp"
+                app:civ_border_color="#FF000000"/>
 
         </RelativeLayout>
 
@@ -55,14 +56,17 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/first"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawablePadding="10dp" />
+                android:layout_height="37dp"
+                android:background="@drawable/blue_border_rounded_cornwe"
+                />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Last Name"
-                android:textSize="18sp"></TextView>
+                android:textSize="18sp">
+
+            </TextView>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -73,7 +77,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/last"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="37dp"
+                android:background="@drawable/blue_border_rounded_cornwe"
                 android:drawablePadding="10dp" />
 
             <TextView
@@ -91,7 +96,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/phone"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="37dp"
+                android:background="@drawable/blue_border_rounded_cornwe"
                 android:drawablePadding="10dp" />
 
             <TextView
@@ -109,9 +115,9 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/mail"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="37dp"
                 android:layout_marginBottom="40dp"
-
+                android:background="@drawable/blue_border_rounded_cornwe"
                 android:drawablePadding="10dp"
                 android:editable="false" />
 
@@ -119,8 +125,8 @@
                 android:id="@+id/btn_update"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#1accff"
                 android:padding="10dp"
+                android:background="@drawable/blue_border_rounded_cornwe"
                 android:text="Update" />
 
         </LinearLayout>
