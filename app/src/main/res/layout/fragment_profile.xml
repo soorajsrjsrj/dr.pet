@@ -58,7 +58,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="37dp"
                 android:background="@drawable/blue_border_rounded_cornwe"
-                />
+                android:paddingLeft="10dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -79,7 +79,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="37dp"
                 android:background="@drawable/blue_border_rounded_cornwe"
-                android:drawablePadding="10dp" />
+                android:drawablePadding="10dp"
+                android:paddingLeft="10dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -98,7 +99,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="37dp"
                 android:background="@drawable/blue_border_rounded_cornwe"
-                android:drawablePadding="10dp" />
+                android:drawablePadding="10dp"
+                android:paddingLeft="10dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -119,7 +121,8 @@
                 android:layout_marginBottom="40dp"
                 android:background="@drawable/blue_border_rounded_cornwe"
                 android:drawablePadding="10dp"
-                android:editable="false" />
+                android:editable="false"
+                android:paddingLeft="10dp" />
 
             <Button
                 android:id="@+id/btn_update"
