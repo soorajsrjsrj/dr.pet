@@ -64,8 +64,8 @@ public class Payment extends Fragment {
                 String cvv = c_cvvNumb.getText().toString();
 
                 dbManager.insertintopayment(cardName, cardNumber, expiry, cvv, user_id);
-                /*Toast.makeText(Payment.this.getActivity(), "Succesfully Added" + cardName + ":" + cardNumber +
-                        " : " + user_id , Toast.LENGTH_LONG).show();*/
+                Toast.makeText(Payment.this.getActivity(), "Succesfully Added" + cardName + ":" + cardNumber +
+                        " : " + user_id , Toast.LENGTH_LONG).show();
 
                 getFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new MenuFragment()).commit();
