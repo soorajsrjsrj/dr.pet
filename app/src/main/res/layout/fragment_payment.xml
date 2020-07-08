@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/white"
     android:orientation="vertical">
 
@@ -74,7 +75,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_marginStart="15dp"
                         android:layout_marginLeft="15dp"
-                        android:layout_marginTop="24dp"
+                        android:layout_marginTop="23dp"
                         android:layout_marginEnd="17dp"
                         android:layout_marginRight="17dp"
                         android:background="@drawable/bgclrs" />
@@ -86,8 +87,8 @@
                         android:layout_alignParentStart="true"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentBottom="true"
-                        android:layout_marginStart="35dp"
-                        android:layout_marginLeft="35dp"
+                        android:layout_marginStart="52dp"
+                        android:layout_marginLeft="52dp"
                         android:layout_marginBottom="19dp"
                         android:hint="Name Of Card"
                         android:textAllCaps="true"
@@ -95,30 +96,21 @@
                         android:textColorHint="#151111" />
 
                     <TextView
-                        android:id="@+id/card_preview_expiry"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/card_preview_type"
+                        android:layout_width="80dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentEnd="true"
                         android:layout_alignParentRight="true"
                         android:layout_alignParentBottom="true"
-                        android:layout_marginRight="35dp"
-                        android:layout_marginBottom="19dp"
-                        android:hint="Expiry Date"
+                        android:layout_marginStart="178dp"
+                        android:layout_marginEnd="12dp"
+                        android:layout_marginRight="12dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_toEndOf="@+id/card_preview_name"
+                        android:text="VISA"
                         android:textAllCaps="true"
-                        android:textColor="#050505"
-                        android:textColorHint="#100E0E" />
-
-                    <TextView
-                        android:id="@+id/card_preview_type"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="35dp"
-                        android:textAllCaps="true"
-                        android:textColor="#fff"
-                        android:textColorHint="#fff"
-                        android:textSize="18sp" />
+                        android:textColor="@color/black"
+                        android:textSize="18dp" />
 
                     <TextView
                         android:id="@+id/card_preview_number"
@@ -135,6 +127,34 @@
                         android:textColorHint="@android:color/primary_text_light_nodisable"
                         android:textSize="20sp"
                         android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="214dp"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@+id/card_preview_name"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="52dp"
+                        android:layout_marginEnd="-61dp"
+                        android:layout_marginBottom="17dp"
+                        android:layout_toStartOf="@+id/card_preview_expiry"
+                        android:text="EXPIRATION END OF "
+                        android:textColor="#0C0C0C" />
+
+                    <TextView
+                        android:id="@+id/card_preview_expiry"
+                        android:layout_width="96dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginEnd="121dp"
+                        android:layout_marginRight="121dp"
+                        android:layout_marginBottom="56dp"
+                        android:hint="Expiry Date"
+                        android:textAllCaps="true"
+                        android:textColor="#050505"
+                        android:textColorHint="#100E0E" />
                 </RelativeLayout>
 
             </RelativeLayout>
@@ -144,119 +164,105 @@
                 android:layout_height="0dp"
                 android:layout_weight=".7">
 
+                <TextView
+                    android:id="@+id/payment_amount_holder2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/btn_pay"
+                    android:layout_alignParentStart="true"
+
+                    android:layout_marginStart="59dp"
+                    android:layout_marginBottom="22dp"
+                    android:fontFamily="sans-serif"
+                    android:text="Rememebr my card "
+                    android:textSize="17sp" />
 
                 <Button
                     android:id="@+id/btn_pay"
                     android:layout_width="379dp"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/expiry_date_layout"
                     android:layout_alignParentStart="true"
-                    android:background="@drawable/blue_border_rounded_cornwe1"
-
                     android:layout_alignParentLeft="true"
+
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
-                    android:layout_marginStart="18dp"
-                    android:layout_marginLeft="18dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="17dp"
+                    android:layout_marginLeft="17dp"
                     android:layout_marginEnd="15dp"
                     android:layout_marginRight="15dp"
+                    android:layout_marginBottom="56dp"
+                    android:background="@drawable/blue_border_rounded_cornwe1"
                     android:padding="5dp"
                     android:text="ADD PAYMENT"
                     android:textColor="@android:color/white" />
 
-                <EditText
-                    android:id="@+id/card_number"
-                    android:layout_width="400dp"
-                    android:layout_height="40dp"
+                <LinearLayout
+                    android:id="@+id/card_number1"
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
                     android:layout_below="@+id/card_name"
                     android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"
                     android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginStart="6dp"
-                    android:layout_marginLeft="6dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="7dp"
-                    android:layout_marginRight="7dp"
-                    android:background="@drawable/blue_border_rounded_cornwe"
-                    android:hint="Card Number"
-                    android:inputType="phone"
-                    android:lines="1"
-                    android:maxLength="16"
-                    android:maxLines="1"
-                    android:paddingLeft="15dp" />
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="-3dp"
+                    android:layout_marginEnd="0dp"
+                    android:layout_marginBottom="-287dp">
 
+                    <LinearLayout
+                        android:id="@+id/expiry_date_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        android:layout_marginStart="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginTop="-223dp"
+                        android:layout_marginEnd="3dp"
+                        android:layout_marginRight="3dp"
+                        android:layout_marginBottom="195dp"
+                        android:weightSum="1"
+                        android:orientation="horizontal">
+                    </LinearLayout>
+
+                    <com.santalu.maskedittext.MaskEditText
+                        android:id="@+id/card_number"
+                        android:layout_width="400dp"
+                        android:layout_height="41dp"
+                        android:layout_marginStart="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="9dp"
+                        android:layout_marginRight="9dp"
+                        android:layout_marginBottom="197dp"
+                        android:background="@drawable/blue_border_rounded_cornwe"
+                        android:hint="Card Number"
+                        android:inputType="phone"
+                        android:lines="1"
+                        android:maxLength="16"
+                        android:maxLines="1"
+                        android:paddingLeft="15dp"
+                        app:met_mask="#### #### #### ####" />
+                </LinearLayout>
 
                 <EditText
                     android:id="@+id/card_name"
-                    android:layout_width="400dp"
-                    android:layout_height="40dp"
+                    android:layout_width="396dp"
+                    android:layout_height="41dp"
                     android:layout_below="@+id/payment_amount_layout"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentLeft="true"
-
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
-                    android:layout_marginStart="9dp"
-                    android:layout_marginLeft="9dp"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="19dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="10dp"
                     android:background="@drawable/blue_border_rounded_cornwe"
                     android:hint="Name on Card"
                     android:inputType="textPersonName"
                     android:lines="1"
                     android:maxLines="1"
                     android:paddingLeft="15dp" />
-
-                <LinearLayout
-                    android:id="@+id/expiry_date_layout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="45dp"
-                    android:layout_below="@+id/card_number"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginTop="17dp"
-                    android:layout_marginEnd="0dp"
-                    android:layout_marginRight="0dp"
-                    android:weightSum="1">
-
-
-                    <EditText
-                        android:id="@+id/expiry_date"
-                        android:layout_width="199dp"
-                        android:layout_height="40dp"
-                        android:layout_below="@+id/card_name"
-                        android:layout_weight=".50"
-                        android:background="@drawable/blue_border_rounded_cornwe"
-
-                        android:hint="Expiry Date"
-                        android:inputType="phone"
-                        android:lines="1"
-                        android:maxLength="4"
-                        android:maxLines="1"
-                        android:paddingLeft="15dp" />
-
-                    <EditText
-                        android:id="@+id/cvc"
-                        android:layout_width="81dp"
-                        android:layout_height="40dp"
-                        android:layout_weight=".45"
-                        android:background="@drawable/blue_border_rounded_cornwe"
-
-                        android:hint="CCV"
-                        android:inputType="phone"
-                        android:lines="1"
-                        android:maxLength="3"
-                        android:maxLines="1"
-                        android:paddingLeft="15dp" />
-
-                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/payment_amount_layout"
@@ -299,6 +305,53 @@
                     android:paddingRight="10dp"
                     android:text="$00.00"
                     android:textSize="22sp" />
+
+                <com.santalu.maskedittext.MaskEditText
+                    android:id="@+id/expiry_date"
+                    android:layout_width="305dp"
+                    android:layout_height="41dp"
+                    android:layout_above="@+id/payment_amount_holder2"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="7dp"
+                    android:layout_marginBottom="41dp"
+                    android:layout_weight=".50"
+                    android:background="@drawable/blue_border_rounded_cornwe"
+                    android:hint="Expiry Date"
+                    android:inputType="phone"
+                    android:lines="1"
+                    android:maxLength="4"
+                    android:maxLines="1"
+                    android:paddingLeft="15dp"
+                    app:met_mask="##/##"/>
+
+                <EditText
+                    android:id="@+id/cvc"
+                    android:layout_width="92dp"
+                    android:layout_height="41dp"
+                    android:layout_above="@+id/checkBox"
+
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginBottom="41dp"
+                    android:layout_weight=".45"
+                    android:background="@drawable/blue_border_rounded_cornwe"
+                    android:hint="CCV"
+                    android:inputType="textPassword"
+                    android:lines="1"
+                    android:maxLength="3"
+                    android:maxLines="1"
+                    android:paddingLeft="15dp" />
+
+                <CheckBox
+                    android:id="@+id/checkBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/btn_pay"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="45dp"
+                    android:layout_marginBottom="13dp" />
+
+
             </RelativeLayout>
         </LinearLayout>
 
@@ -310,4 +363,4 @@
         android:layout_centerInParent="true"
         android:textSize="30sp" />
 
-</RelativeLayout>
+</LinearLayout>
