@@ -65,20 +65,34 @@
                     android:visibility="visible">
 
                     <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="217dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginEnd="17dp"
+                        android:layout_marginRight="17dp"
+                        android:background="@drawable/bgclrs" />
 
                     <TextView
                         android:id="@+id/card_preview_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
                         android:layout_alignParentBottom="true"
+                        android:layout_marginStart="35dp"
                         android:layout_marginLeft="35dp"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginBottom="19dp"
                         android:hint="Name Of Card"
                         android:textAllCaps="true"
-                        android:textColor="#fff"
-                        android:textColorHint="#fff" />
+                        android:textColor="#0C0A0A"
+                        android:textColorHint="#151111" />
 
                     <TextView
                         android:id="@+id/card_preview_expiry"
@@ -87,11 +101,11 @@
                         android:layout_alignParentRight="true"
                         android:layout_alignParentBottom="true"
                         android:layout_marginRight="35dp"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginBottom="19dp"
                         android:hint="Expiry Date"
                         android:textAllCaps="true"
-                        android:textColor="#fff"
-                        android:textColorHint="#fff" />
+                        android:textColor="#050505"
+                        android:textColorHint="#100E0E" />
 
                     <TextView
                         android:id="@+id/card_preview_type"
@@ -117,8 +131,8 @@
                         android:gravity="top|center_horizontal"
                         android:hint="XXXX XXXX XXXX XXXX"
                         android:textAllCaps="true"
-                        android:textColor="@android:color/white"
-                        android:textColorHint="@android:color/white"
+                        android:textColor="@android:color/primary_text_light_nodisable"
+                        android:textColorHint="@android:color/primary_text_light_nodisable"
                         android:textSize="20sp"
                         android:textStyle="bold" />
                 </RelativeLayout>
@@ -130,26 +144,43 @@
                 android:layout_height="0dp"
                 android:layout_weight=".7">
 
+
                 <Button
                     android:id="@+id/btn_pay"
-                    android:layout_width="match_parent"
+                    android:layout_width="379dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/expiry_date_layout"
-                    android:layout_marginTop="15dp"
+                    android:layout_alignParentStart="true"
+                    android:background="@drawable/blue_border_rounded_cornwe1"
 
-                    android:background="#ED4C40"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginRight="15dp"
                     android:padding="5dp"
                     android:text="ADD PAYMENT"
                     android:textColor="@android:color/white" />
 
-
                 <EditText
                     android:id="@+id/card_number"
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_width="400dp"
+                    android:layout_height="40dp"
                     android:layout_below="@+id/card_name"
-                    android:layout_marginTop="15dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
 
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="7dp"
+                    android:layout_marginRight="7dp"
+                    android:background="@drawable/blue_border_rounded_cornwe"
                     android:hint="Card Number"
                     android:inputType="phone"
                     android:lines="1"
@@ -159,11 +190,20 @@
 
                 <EditText
                     android:id="@+id/card_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_width="400dp"
+                    android:layout_height="40dp"
                     android:layout_below="@+id/payment_amount_layout"
-                    android:layout_marginTop="15dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
 
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginLeft="9dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:background="@drawable/blue_border_rounded_cornwe"
                     android:hint="Name on Card"
                     android:inputType="textPersonName"
                     android:lines="1"
@@ -172,18 +212,27 @@
 
                 <LinearLayout
                     android:id="@+id/expiry_date_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
                     android:layout_below="@+id/card_number"
-                    android:layout_marginTop="15dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="17dp"
+                    android:layout_marginEnd="0dp"
+                    android:layout_marginRight="0dp"
                     android:weightSum="1">
 
                     <EditText
                         android:id="@+id/expiry_date"
-                        android:layout_width="0dp"
-                        android:layout_height="45dp"
+                        android:layout_width="199dp"
+                        android:layout_height="40dp"
                         android:layout_below="@+id/card_name"
                         android:layout_weight=".50"
+                        android:background="@drawable/blue_border_rounded_cornwe"
 
                         android:hint="Expiry Date"
                         android:inputType="phone"
@@ -194,9 +243,10 @@
 
                     <EditText
                         android:id="@+id/cvc"
-                        android:layout_width="0dp"
-                        android:layout_height="45dp"
+                        android:layout_width="81dp"
+                        android:layout_height="40dp"
                         android:layout_weight=".45"
+                        android:background="@drawable/blue_border_rounded_cornwe"
 
                         android:hint="CCV"
                         android:inputType="phone"
@@ -211,6 +261,10 @@
                     android:id="@+id/payment_amount_layout"
                     android:layout_width="wrap_content"
                     android:layout_height="60dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginEnd="168dp"
+                    android:layout_marginRight="168dp"
                     android:gravity="bottom"
                     android:orientation="vertical">
 
@@ -219,7 +273,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif"
-                        android:text="ADD PAYMENT METHOD"
+                        android:text="Enter your card details below"
 
                         android:textSize="17sp" />
 
@@ -230,18 +284,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_above="@+id/card_name"
+                    android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_marginStart="111dp"
+                    android:layout_marginLeft="111dp"
+                    android:layout_marginTop="11dp"
                     android:layout_marginEnd="18dp"
                     android:layout_marginRight="18dp"
-
                     android:layout_marginBottom="15dp"
-                    android:layout_toEndOf="@+id/payment_amount_layout"
                     android:fontFamily="sans-serif"
+                    android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:text="$00.00"
-                    android:textSize="25sp" />
+                    android:textSize="22sp" />
             </RelativeLayout>
         </LinearLayout>
 
