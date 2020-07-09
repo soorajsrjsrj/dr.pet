@@ -4,7 +4,9 @@ import android.Manifest;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
@@ -28,6 +30,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.example.drpet.Model.DBManager;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -65,6 +68,7 @@ public class MenuFragment extends Fragment implements OnMapReadyCallback, Google
     LocationRequest mLocationRequest;
     SupportMapFragment mFragment;
     FragmentManager fragmentManager;
+    private DBManager dbManager;
 
     LinearLayout profile_page;
     LinearLayout payment_page;
@@ -74,6 +78,14 @@ public class MenuFragment extends Fragment implements OnMapReadyCallback, Google
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+//        SharedPreferences pref = getActivity().getApplicationContext().getSharedPreferences("id_pref", Context.MODE_PRIVATE);
+//        final int user_id = pref.getInt("key_id", 0);
+
+        dbManager = new DBManager(getActivity().getApplicationContext());
+        dbManager.open();
+//        Cursor cursor = dbManager.fetchUserData(user_id);
+//        dbManager.insertintolocation(x3, x4,user_id);
 
         view=inflater.inflate(R.layout.fragment_menu,container,false);
         fragmentManager=getChildFragmentManager();
@@ -90,9 +102,45 @@ public class MenuFragment extends Fragment implements OnMapReadyCallback, Google
 
     }
 
+
+
+    // database usage
+//    SharedPreferences pref = getActivity().getApplicationContext().getSharedPreferences("id_pref", Context.MODE_PRIVATE);
+//    final int user_id = pref.getInt("key_id", 0);
+//
+//    Cursor cursor = dbManager.fetchUserData(user_id);
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+
+        SharedPreferences pref = getActivity().getApplicationContext().getSharedPreferences("id_pref", Context.MODE_PRIVATE);
+          final int user_id = pref.getInt("key_id", 0);
+
+
+
+
+        //database
+        dbManager = new DBManager(getActivity().getApplicationContext());
+        dbManager.open();
+        Cursor cursor = dbManager.fetchlocationData(user_id);
+
+if(cursor.getCount()>0){
+    int id = 1;
+   dbManager.updateintolocation(id,x3,x4);
+//    dbManager.insertintolocation(x3, x4, id);
+    Log.d("location database", "inside the update loop");
+
+}else {
+    int id = user_id;
+//    dbManager.updateintolocation(id,x3,x4);
+    dbManager.insertintolocation(x3, x4, id);
+    Log.d("location database", "inside the insert loop");
+}
+
+
+
 
         profile_page = (LinearLayout) getView().findViewById(R.id.profile_page);
         payment_page = (LinearLayout) getView().findViewById(R.id.payment_page);
@@ -136,8 +184,18 @@ public class MenuFragment extends Fragment implements OnMapReadyCallback, Google
         }
         mLatLng = new LatLng(location.getLatitude(), location.getLongitude());
         //new
-        x3 = location.getLatitude();
-        x4 = location.getLongitude();
+        x3 = mLatLng.latitude;
+        x4 = mLatLng.longitude;
+        //location information inserting into database
+//           SharedPreferences pref = getActivity().getApplicationContext().getSharedPreferences("id_pref", Context.MODE_PRIVATE);
+//        final int user_id = pref.getInt("key_id", 0);
+//
+//        Cursor cursor = dbManager.fetchUserData(user_id);
+
+
+        int id = 1;
+        dbManager.updateintolocation(id,x3, x4);
+//        Toast.makeText(getActivity().getApplicationContext(), "insert location sucessfully to the database", Toast.LENGTH_SHORT).show();
 
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(mLatLng);
@@ -251,10 +309,19 @@ public class MenuFragment extends Fragment implements OnMapReadyCallback, Google
                     Log.d("activity", "LOC by Network");
                     mLatLng = new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude());
 
-//                    new
-                    //new
-                    x3 = location.getLatitude();
-                    x4 = location.getLongitude();
+                    x3 = mLatLng.latitude;
+                    x4 = mLatLng.longitude;
+                    //location information inserting into database
+//                    SharedPreferences pref = getActivity().getApplicationContext().getSharedPreferences("id_pref", Context.MODE_PRIVATE);
+//                    final int user_id = pref.getInt("key_id", 0);
+//
+//                    Cursor cursor = dbManager.fetchUserData(user_id);
+//
+//                    int id = user_id;
+//                    dbManager.insertintolocation(x3, x4,id);
+//                    Toast.makeText(getActivity().getApplicationContext(), "insert location sucessfully to the database", Toast.LENGTH_SHORT).show();
+
+
 
 
                     MarkerOptions markerOptions = new MarkerOptions();

@@ -6,6 +6,9 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
+import static com.example.drpet.Model.DatabaseHelper.id;
+import static com.example.drpet.Model.DatabaseHelper.location_Id;
+
 public class DBManager {
     private DatabaseHelper dbHelper;
     private Context context;
@@ -41,6 +44,14 @@ public class DBManager {
         contentValue.put(DatabaseHelper.user_id, user_id);
         database.insert(DatabaseHelper.TABLE_PAYMENT, null, contentValue);
     }
+    //insert into location method
+    public void insertintolocation(Double lat, Double log,int user_id) throws SQLException {
+        ContentValues contentValue = new ContentValues();
+        contentValue.put(DatabaseHelper.latitude, lat);
+        contentValue.put(DatabaseHelper.logitude, log);
+       contentValue.put(DatabaseHelper.user_id, user_id);
+        database.insert(DatabaseHelper.TABLE_LOCATION, null, contentValue);
+    }
     public Cursor fetchId(String u_email) {
         String query = "SELECT id FROM " + DatabaseHelper.TABLE_NAME + " WHERE " + DatabaseHelper.email + " = '" + u_email + "'";
         Cursor cursor = database.rawQuery(query, null);
@@ -50,12 +61,22 @@ public class DBManager {
         return cursor;
     }
     public  Cursor fetchUserData(int user_id){
-        String query = "SELECT * FROM " + DatabaseHelper.TABLE_NAME + " WHERE " + DatabaseHelper.id + " = " + user_id;
+        String query = "SELECT * FROM " + DatabaseHelper.TABLE_NAME + " WHERE " + id + " = " + user_id;
         Cursor cursor = database.rawQuery(query, null);
         if(cursor != null){
             cursor.moveToFirst();
         }
         return cursor;
+    }
+
+    public Cursor fetchlocationData(int location_id){
+        String query = "SELECT * FROM " + DatabaseHelper.TABLE_LOCATION + " WHERE " + location_Id + " = " + location_id;
+        Cursor cursor = database.rawQuery(query, null);
+        if(cursor != null){
+            cursor.moveToFirst();
+        }
+        return cursor;
+
     }
     public void update(int id, String fName, String lName, String phone, byte[] image) throws SQLException {
         ContentValues contentValues = new ContentValues();
@@ -66,6 +87,23 @@ public class DBManager {
         database.update(DatabaseHelper.TABLE_NAME, contentValues, DatabaseHelper.id + " = '" + id + "'" , null);
         System.out.println(image);
     }
+
+    public void updateintolocation(int user_id,Double lat, Double log) throws SQLException {
+        ContentValues contentValue = new ContentValues();
+        contentValue.put(DatabaseHelper.latitude, lat);
+        contentValue.put(DatabaseHelper.logitude, log);
+//        contentValue.put(DatabaseHelper.user_id, user_id);
+
+        database.update(DatabaseHelper.TABLE_LOCATION, contentValue, DatabaseHelper.user_id + " = '" + user_id + "'" , null);
+    }
+//update the location
+//    public void updateintolocation(Double lat, Double log) throws SQLException {
+//        ContentValues contentValue = new ContentValues();
+//        contentValue.put(DatabaseHelper.latitude, lat);
+//        contentValue.put(DatabaseHelper.logitude, log);
+//
+//        database.update(DatabaseHelper.TABLE_LOCATION, null);
+//    }
     public void delete(String email) {
         database.delete(DatabaseHelper.TABLE_NAME, DatabaseHelper.email + "=" + email, null);
     }

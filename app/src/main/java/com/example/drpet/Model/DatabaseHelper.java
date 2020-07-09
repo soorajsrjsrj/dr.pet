@@ -11,6 +11,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //table_name
     public static final String TABLE_NAME = "profile";
     public static final String TABLE_PAYMENT = "payment";
+    public static final String TABLE_LOCATION = "location";
     // Table columns
     public static final String id = "id";
     public static final String fName = "fName";
@@ -25,6 +26,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String expiry = "expiry";
     public static final String cvv = "cvv";
     public static final String user_id = "user_id";
+    public static final String location_Id = "card_id";
+    public static final String latitude="latitude";
+    public static final String logitude="logitude";
+
     // Database Information
     static final String DB_NAME = "DRPET.DB";
     // database version
@@ -37,6 +42,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             "(" + card_Id + " INTEGER PRIMARY KEY AUTOINCREMENT, " + cardName + " TEXT, " +
             cardNumber + " INTEGER, " + expiry + " INTEGER, " + cvv + " INTEGER, " +
             user_id + " INTEGER, FOREIGN KEY(" + user_id + ") REFERENCES  " + TABLE_NAME + " ( " + id + " ));" ;
+    private static final String CREATE_LOCATION = "create table " + TABLE_LOCATION +
+            "( " + location_Id + " INTEGER PRIMARY KEY AUTOINCREMENT," + latitude + " DOUBLE, " +
+         logitude + " DOUBLE, "+ user_id + " INTEGER, FOREIGN KEY(" + user_id + ") REFERENCES  " + TABLE_NAME + " ( " + id + " ));" ;
+
+//    " + location_Id + " INTEGER PRIMARY KEY AUTOINCREMENT,
+//            +
+//            user_id + " INTEGER, FOREIGN KEY(" + user_id + ") REFERENCES  " + TABLE_NAME + " ( " + id + " ));" ;
     public DatabaseHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
@@ -44,11 +56,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE);
         db.execSQL(CREATE_PAYMENT);
+        db.execSQL(CREATE_LOCATION);
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PAYMENT);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_LOCATION);
         onCreate(db);
     }
     /**

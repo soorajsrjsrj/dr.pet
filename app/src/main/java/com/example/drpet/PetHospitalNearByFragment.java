@@ -2,11 +2,13 @@ package com.example.drpet;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,13 +22,18 @@ import androidx.fragment.app.Fragment;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.Loader;
 
+import com.example.drpet.Model.DBManager;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class PetHospitalNearByFragment extends Fragment implements LoaderManager.LoaderCallbacks<List<NearbyHospitals>>, SharedPreferences.OnSharedPreferenceChangeListener  {
 
+
+
     private static final int EARTHQUAKE_LOADER_ID = 1;
     NearbyAdapter mAdapter;
+    public double lat,log;
 
 
     private static final String LOG_TAG = PetHospitalNearByFragment.class.getName();
@@ -36,10 +43,15 @@ public class PetHospitalNearByFragment extends Fragment implements LoaderManager
             "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=43.7712,-79.2144&rankby=distance&type=veterinary_care&key=AIzaSyB8-VBp-EES8iDNiB-9pWCCwR0YspOuPeY";
 
 
+
+    private DBManager dbManager;
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.pethospital, container, false);
+
 
 
     }
@@ -48,6 +60,21 @@ public class PetHospitalNearByFragment extends Fragment implements LoaderManager
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        SharedPreferences pref = getActivity().getApplicationContext().getSharedPreferences("id_pref", Context.MODE_PRIVATE);
+        final int user_id = pref.getInt("key_id", 0);
+
+        dbManager = new DBManager(getActivity().getApplicationContext());
+        dbManager.open();
+        Cursor cursor = dbManager.fetchlocationData(user_id);
+        if(cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            lat= cursor.getDouble(2);
+            log = cursor.getDouble(3);
+            Log.d("pet hospital nearby", "lat" + lat+ ",long:"+log);
+
+        }
+
+
 //        ArrayList<NearbyHospitals> nearhospital = new ArrayList<>();
 //        nearhospital.add(new NearbyHospitals("MARKHAM","23KM","2.3"));
 //        nearhospital.add(new NearbyHospitals("MARKHAM","23KM","2.3"));
@@ -55,7 +82,7 @@ public class PetHospitalNearByFragment extends Fragment implements LoaderManager
 //        nearhospital.add(new NearbyHospitals("MARKHAM","23KM","2.3"));
 //        nearhospital.add(new NearbyHospitals("MARKHAM","23KM","2.3"));
 
-
+//
         // Find a reference to the {@link ListView} in the layout
         ListView earthquakeListView = (ListView) getView().findViewById(R.id.list);
 
