@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -98,6 +99,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             Bitmap bt = getImage(pro_pic);
             nav_profile.setImageBitmap(bt);
+
         }
 
 

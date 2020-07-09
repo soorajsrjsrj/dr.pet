@@ -36,6 +36,7 @@ public class ProfileDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_profile_detail, container, false);
+
     }
 
     @Override
@@ -54,7 +55,7 @@ public class ProfileDetailFragment extends Fragment {
         final TextView pro_fname = (TextView) getActivity().findViewById(R.id.p_fname);
         final TextView pro_lname = (TextView) getActivity().findViewById(R.id.p_lname);
         final TextView pro_phone = (TextView) getActivity().findViewById(R.id.p_phone);
-        final  TextView email_pd = (TextView) getActivity().findViewById(R.id.email_in_pd);
+        final TextView email_pd = (TextView) getActivity().findViewById(R.id.email_in_pd);
         final TextView btn_edit = (TextView) getActivity().findViewById(R.id.btn_edit);
 
         if (cursor.getCount() > 0 ){
