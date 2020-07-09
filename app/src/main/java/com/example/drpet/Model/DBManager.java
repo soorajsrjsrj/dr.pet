@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
+import static com.example.drpet.Model.DatabaseHelper.card_Id;
 import static com.example.drpet.Model.DatabaseHelper.id;
 import static com.example.drpet.Model.DatabaseHelper.location_Id;
 
@@ -71,6 +72,15 @@ public class DBManager {
 
     public Cursor fetchlocationData(int location_id){
         String query = "SELECT * FROM " + DatabaseHelper.TABLE_LOCATION + " WHERE " + location_Id + " = " + location_id;
+        Cursor cursor = database.rawQuery(query, null);
+        if(cursor != null){
+            cursor.moveToFirst();
+        }
+        return cursor;
+
+    }
+    public Cursor fetchpaymentData(int user_id){
+        String query = "SELECT * FROM " + DatabaseHelper.TABLE_PAYMENT + " WHERE " + card_Id + " = " + user_id;
         Cursor cursor = database.rawQuery(query, null);
         if(cursor != null){
             cursor.moveToFirst();

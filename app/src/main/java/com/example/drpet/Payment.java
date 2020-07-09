@@ -30,7 +30,7 @@ public class Payment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         dbManager = new DBManager(getActivity().getApplicationContext());
         dbManager.open();
-//        Cursor cursor = dbManager.();
+
         final TextView c_Name = (TextView) getView().findViewById(R.id.card_name);
         final TextView c_Number = (TextView) getView().findViewById(R.id.card_number);
         final TextView c_expiryDate = (TextView) getView().findViewById(R.id.expiry_date);
@@ -38,14 +38,15 @@ public class Payment extends Fragment {
         Button payButton = (Button) getView().findViewById(R.id.btn_pay);
         SharedPreferences pref = getActivity().getApplicationContext().getSharedPreferences("id_pref", Context.MODE_PRIVATE);
         final int user_id = pref.getInt("key_id", 0);
-//        if(cursor.getCount() > 0){
-//            cursor.moveToFirst();
-//            cardName.setText(cursor.getString(0));
-//            carNumber.setText(cursor.getString(1));
-//            expiryDate.setText(cursor.getString(2));
-//            cvvNumb.setText(cursor.getString(3));
-//        }
-//
+         Cursor cursor = dbManager.fetchpaymentData(user_id);
+        if(cursor.getCount() > 0){
+            cursor.moveToFirst();
+            c_Name.setText(cursor.getString(1));
+            c_Number.setText(cursor.getString(2));
+            c_expiryDate.setText(cursor.getString(3));
+            c_cvvNumb.setText(cursor.getString(4));
+        }
+
 //
         payButton.setOnClickListener(new View.OnClickListener() {
             @Override
