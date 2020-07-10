@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,19 +14,53 @@ import androidx.annotation.Nullable;
 import java.util.Date;
 import java.util.List;
 
-public class NearbyAdapter extends ArrayAdapter<NearbyHospitals> {
+public class NearbyAdapter extends BaseAdapter {
+
+
+    private List<NearbyHospitals> nw;
+    private Context context;
 
 
     public NearbyAdapter(Context context, List<NearbyHospitals> earthquakes) {
-        super(context, 0, earthquakes);
+//        super();
+        this.nw = earthquakes;
+        this.context = context;
+//    super(context, 0, earthquakes);
     }
+    public void addFeeds(List<NearbyHospitals> feedArrayList) {
+        this.nw = feedArrayList;
+    }
+
+
+
+
+    public void clear() {
+        nw.clear();
+    }
+    @Override
+    public int getCount() {
+        return nw.size();
+    }
+
+    @Override
+    public NearbyHospitals getItem(int position) {
+        return nw.get(position);
+    }
+
+
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
 
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View listItemView = convertView;
         if (listItemView == null) {
-            listItemView = LayoutInflater.from(getContext()).inflate(
+            listItemView = LayoutInflater.from(context).inflate(
                     R.layout.nearbyhospitallist, parent, false);
         }
 
@@ -51,8 +86,8 @@ public class NearbyAdapter extends ArrayAdapter<NearbyHospitals> {
         // a primary location (Cairo, Egypt) and a location offset (5km N of that city)
         // then store the primary location separately from the location offset in 2 Strings,
         // so they can be displayed in 2 TextViews.
-        String primaryLocation;
-        String locationOffset;
+//        String primaryLocation;
+//        String locationOffset;
 
 
         // Find the TextView with view ID location
@@ -61,11 +96,16 @@ public class NearbyAdapter extends ArrayAdapter<NearbyHospitals> {
 
 
         // Find the TextView with view ID date
-        TextView ratintlist = (TextView) listItemView.findViewById(R.id.rating);
+        TextView ratintlist = (TextView) listItemView.findViewById(R.id.distance);
         // Format the date string (i.e. "Mar 3, 1984")
         String formatrating = currentHospital.getmRating();
         // Display the date of the current earthquake in that TextView
         ratintlist.setText(formatrating);
+        TextView address = (TextView) listItemView.findViewById(R.id.rating);
+        // Format the date string (i.e. "Mar 3, 1984")
+        String formataddress = currentHospital.getmDistance();
+        // Display the date of the current earthquake in that TextView
+        address.setText(formataddress);
 
         // Find the TextView with view ID time
 

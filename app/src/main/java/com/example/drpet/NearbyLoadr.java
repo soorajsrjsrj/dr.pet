@@ -24,6 +24,7 @@ public class NearbyLoadr extends AsyncTaskLoader<List<NearbyHospitals>> {
 
     @Override
     protected void onStartLoading() {
+        super.onStartLoading();
         forceLoad();
     }
 

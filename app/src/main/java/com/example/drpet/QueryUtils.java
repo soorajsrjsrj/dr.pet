@@ -160,6 +160,7 @@ public  final class QueryUtils {
 
                 // For each earthquake in the earthquakeArray, create an {@link Earthquake} object
                 for (int i = 0; i < hospitalarry.length(); i++) {
+//                for (int i = 0; i < hospitalarry.length(); i++) {
 
                     // Get a single earthquake at position i within the list of earthquakes
                     JSONObject currentEarthquake = hospitalarry.getJSONObject(i);
@@ -168,10 +169,12 @@ public  final class QueryUtils {
                     // key called "properties", which represents a list of all properties
                     // for that earthquake.
                     String hospitalname = currentEarthquake.getString("name");
+
+
                     String hospitalrating = currentEarthquake.getString("rating");
                     String hospitalvicinty = currentEarthquake.getString("vicinity");
 
-                    Log.e("json value ", hospitalname +","+hospitalrating);
+                    Log.e("json value ", hospitalname +","+hospitalrating+","+hospitalvicinty);
 
 
                     // Extract the value for the key called "mag"

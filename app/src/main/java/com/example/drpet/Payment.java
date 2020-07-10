@@ -31,6 +31,7 @@ public class Payment extends Fragment {
         dbManager = new DBManager(getActivity().getApplicationContext());
         dbManager.open();
 
+        final TextView card_preview = (TextView) getView().findViewById(R.id.card_preview_name);
         final TextView c_Name = (TextView) getView().findViewById(R.id.card_name);
         final TextView c_Number = (TextView) getView().findViewById(R.id.card_number);
         final TextView c_expiryDate = (TextView) getView().findViewById(R.id.expiry_date);
@@ -41,6 +42,7 @@ public class Payment extends Fragment {
          Cursor cursor = dbManager.fetchpaymentData(user_id);
         if(cursor.getCount() > 0){
             cursor.moveToFirst();
+            card_preview.setText(cursor.getString(1));
             c_Name.setText(cursor.getString(1));
             c_Number.setText(cursor.getString(2));
             c_expiryDate.setText(cursor.getString(3));
