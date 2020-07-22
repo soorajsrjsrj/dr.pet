@@ -106,6 +106,7 @@ public class DBManager {
 
         database.update(DatabaseHelper.TABLE_LOCATION, contentValue, DatabaseHelper.user_id + " = '" + user_id + "'" , null);
     }
+
 //update the location
 //    public void updateintolocation(Double lat, Double log) throws SQLException {
 //        ContentValues contentValue = new ContentValues();
@@ -114,6 +115,7 @@ public class DBManager {
 //
 //        database.update(DatabaseHelper.TABLE_LOCATION, null);
 //    }
+
     public void delete(String email) {
         database.delete(DatabaseHelper.TABLE_NAME, DatabaseHelper.email + "=" + email, null);
     }

@@ -148,7 +148,9 @@
                     android:layout_marginBottom="4dp"
                     android:ems="10"
                     android:hint="Phone"
+                    android:maxLength="10"
                     android:inputType="phone" />
+
             </RelativeLayout>
 
             <RelativeLayout

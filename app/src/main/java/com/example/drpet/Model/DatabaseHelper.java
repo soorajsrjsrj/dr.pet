@@ -41,7 +41,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String CREATE_PAYMENT = "create table " + TABLE_PAYMENT +
             "(" + card_Id + " INTEGER PRIMARY KEY AUTOINCREMENT, " + cardName + " TEXT, " +
             cardNumber + " INTEGER, " + expiry + " INTEGER, " + cvv + " INTEGER, " +
-            user_id + " INTEGER, FOREIGN KEY(" + user_id + ") REFERENCES  " + TABLE_NAME + " ( " + id + " ));" ;
+            user_id + " INTEGER, PRIMARY KEY(" + user_id + ") REFERENCES  " + TABLE_NAME + " ( " + id + " ));" ;
     private static final String CREATE_LOCATION = "create table " + TABLE_LOCATION +
             "( " + location_Id + " INTEGER PRIMARY KEY AUTOINCREMENT," + latitude + " DOUBLE, " +
          logitude + " DOUBLE, "+ user_id + " INTEGER, FOREIGN KEY(" + user_id + ") REFERENCES  " + TABLE_NAME + " ( " + id + " ));" ;
