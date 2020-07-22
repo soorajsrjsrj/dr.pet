@@ -1,6 +1,7 @@
 package com.example.drpet;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -118,9 +119,6 @@ public class MenuFragment extends Fragment implements OnMapReadyCallback, Google
         SharedPreferences pref = getActivity().getApplicationContext().getSharedPreferences("id_pref", Context.MODE_PRIVATE);
           final int user_id = pref.getInt("key_id", 0);
 
-
-
-
         //database
         dbManager = new DBManager(getActivity().getApplicationContext());
         dbManager.open();
@@ -153,8 +151,17 @@ if(cursor.getCount()>0){
                         new ProfileDetailFragment()).commit();
             }
         });
+       payment_page.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                assert getFragmentManager() != null;
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new Payment()).commit();
+            }
+        });
     }
 
+    @SuppressLint("RestrictedApi")
     @Override
     public void onConnected(Bundle bundle) {
         mLocationRequest = new LocationRequest();

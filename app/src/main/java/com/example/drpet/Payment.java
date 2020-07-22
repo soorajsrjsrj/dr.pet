@@ -4,10 +4,13 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +23,12 @@ import com.example.drpet.Model.DBManager;
 public class Payment extends Fragment {
 
     private DBManager dbManager;
+
+//    private EditText card_name;
+//    private TextView card_preview_name;
+//
+//    private TextWatcher text = null;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -47,9 +56,10 @@ public class Payment extends Fragment {
             c_Number.setText(cursor.getString(2));
             c_expiryDate.setText(cursor.getString(3));
             c_cvvNumb.setText(cursor.getString(4));
+
+
         }
 
-//
         payButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,11 +68,39 @@ public class Payment extends Fragment {
                 String expiry = c_expiryDate.getText().toString();
                 String cvv = c_cvvNumb.getText().toString();
                 dbManager.insertintopayment(cardName, cardNumber, expiry, cvv, user_id);
-                /*Toast.makeText(Payment.this.getActivity(), "Succesfully Added" + cardName + ":" + cardNumber +
-                        " : " + user_id , Toast.LENGTH_LONG).show();*/
+//                Toast.makeText(Payment.this.getActivity(), "Succesfully Added" + cardName + ":" + cardNumber +
+//                        " : " + user_id , Toast.LENGTH_LONG).show();
                 getFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new MenuFragment()).commit();
             }
         });
     }
+
+
+//    @Override
+//    public void onCreate(@Nullable Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//
+//        card_name = (EditText) getView().findViewById(R.id.card_name);
+//        card_preview_name = (TextView) getView().findViewById(R.id.card_preview_name);
+//
+//        text = new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//                card_preview_name.setText(card_name.getText().toString());
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//
+//            }
+//        };
+//        card_name.addTextChangedListener(text);
+//    }
+
 }
