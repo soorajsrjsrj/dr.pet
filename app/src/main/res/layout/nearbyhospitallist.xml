@@ -2,28 +2,41 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="horizontal"
     android:padding="16dp">
+    <ImageView
+        android:src="@drawable/small_cicle"
+        android:id="@+id/hospitalicon"
+        android:layout_width="30dp"
+        android:layout_height="100dp"
+        android:layout_weight="1"/>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:padding="10dp"
+        android:orientation="vertical">
 
     <TextView
         android:id="@+id/hospitalnme"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+
         android:text="markhamhospital" />
 
     <TextView
         android:id="@+id/distance"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+
         android:text="5 km" />
 
     <TextView
         android:id="@+id/rating"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:text="2.3 rating" />
+    </LinearLayout>
 
 
 </LinearLayout>

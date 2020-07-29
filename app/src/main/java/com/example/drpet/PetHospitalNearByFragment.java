@@ -1,5 +1,6 @@
 package com.example.drpet;
 
+import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,6 +10,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,12 +24,16 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.Loader;
 
 import com.example.drpet.Model.DBManager;
+import com.google.android.gms.location.places.Place;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public class PetHospitalNearByFragment extends Fragment implements LoaderManager.LoaderCallbacks<List<NearbyHospitals>>, SharedPreferences.OnSharedPreferenceChangeListener  {
@@ -43,10 +49,12 @@ public class PetHospitalNearByFragment extends Fragment implements LoaderManager
     private static final String LOG_TAG = PetHospitalNearByFragment.class.getName();
 
     /** URL for earthquake data from the USGS dataset */
-    private static  String USGS_REQUEST_URL =
-            "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=37.3117633,-122.05722&rankby=distance&type=veterinary_care&key=AIzaSyB8-VBp-EES8iDNiB-9pWCCwR0YspOuPeY";
+    private static  String USGS_REQUEST_URL;
+//    private static  String USGS_REQUEST_URL =
+//            "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=37.3117633,-122.05722&rankby=distance&type=veterinary_care&key=AIzaSyB8-VBp-EES8iDNiB-9pWCCwR0YspOuPeY";
 
     private DBManager dbManager;
+    NearbyAdapter nw;
 
 
     @Nullable
@@ -72,7 +80,9 @@ public class PetHospitalNearByFragment extends Fragment implements LoaderManager
             cursor.moveToFirst();
             lat= cursor.getDouble(1);
             log = cursor.getDouble(2);
-            Log.d("pet hospital nearby", "lat" + lat + ",long:"+log);
+           Log.d("pet hospil nearby", "lat" + lat + ",long:"+log);
+
+
 
         }
 
@@ -107,6 +117,49 @@ public class PetHospitalNearByFragment extends Fragment implements LoaderManager
         earthquakeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+//
+//                Bundle args = new Bundle();
+//                args.putInt("doctor_id",1234);
+//                DetailedViewHospitalFragment newFragment = new DetailedViewHospitalFragment ();
+//                newFragment.setArguments(args);
+
+//
+//
+//
+//                Log.e("name: ", "> " +  o.get("mName"));
+//                Log.e("address: ", "> " +  o.get("Maddress"));
+////                Log.e("uname: ", "> " +  o.get("uname"));
+////                Log.e("password: ", "> " +  o.get("password"));
+//
+//
+//                DetailedViewHospitalFragment fragment = new DetailedViewHospitalFragment();
+//                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+//                Bundle bundle = new Bundle();
+//                bundle.putString("name", o.get("mName"));
+//                bundle.putString("address", o.get("Maddress"));
+//
+//                Log.e("name: ", "> " +  o.get("name"));
+//                Log.e("address: ", "> " +  o.get("address"));
+//
+//                fragment.setArguments(bundle);
+//                transaction.replace(R.id.fragment_container, new DetailedViewHospitalFragment() );
+//
+//                transaction.commit();
+
+//                FragmentManager fm = getActivity().getFragmentManager();
+//                Bundle arguments = new Bundle();
+//                arguments.putInt("VALUE1", 0);
+//                arguments.putInt("VALUE2", 100);
+//
+//
+//                fm.beginTransaction().replace(R.id.fragment_container, new DetailedViewHospitalFragment(arguments)).commit();
+
+
+
+////////////////////////////////////original commit
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new DetailedViewHospitalFragment()).commit();
 
             }
         });
@@ -155,6 +208,8 @@ public class PetHospitalNearByFragment extends Fragment implements LoaderManager
     @NonNull
     @Override
     public Loader<List<NearbyHospitals>> onCreateLoader(int id, @Nullable Bundle args) {
+
+        USGS_REQUEST_URL =  "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" +lat+ "," +log+ "&rankby=distance&type=veterinary_care&key=AIzaSyB8-VBp-EES8iDNiB-9pWCCwR0YspOuPeY";
         Uri baseUri = Uri.parse(USGS_REQUEST_URL);
         Uri.Builder uriBuilder = baseUri.buildUpon();
         return new NearbyLoadr(getActivity(), uriBuilder.toString());
@@ -198,4 +253,6 @@ public class PetHospitalNearByFragment extends Fragment implements LoaderManager
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
 
     }
+
+
 }

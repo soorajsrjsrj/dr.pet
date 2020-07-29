@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 

@@ -1,7 +1,13 @@
 package com.example.drpet;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.text.TextUtils;
 import android.util.Log;
+
+import com.example.drpet.Model.DBManager;
+import com.google.android.gms.location.places.Place;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -19,6 +25,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public  final class QueryUtils {
+    public double endlat,endlog;
+    private DBManager dbManager;
+
+
 
 
     /** Tag for the log messages */
@@ -26,6 +36,26 @@ public  final class QueryUtils {
 
 
         private QueryUtils() {
+
+            Log.d("insidequerutil", "lat" + endlat + ",long:"+endlog);
+
+
+
+            Cursor cursor = dbManager.fetchlocationData(1);
+            if(cursor.getCount() > 0) {
+                cursor.moveToFirst();
+                endlat= cursor.getDouble(1);
+                endlog = cursor.getDouble(2);
+                Log.d("pet hospital nearby", "lat" + endlat + ",long:"+endlog);
+
+
+            }
+
+
+
+
+
+
         }
 
 
@@ -136,6 +166,11 @@ public  final class QueryUtils {
 
 
 
+
+
+
+
+
             // If the JSON string is empty or null, then return early.
             if (TextUtils.isEmpty(earthquakeJSON)) {
                 return null;
@@ -168,13 +203,33 @@ public  final class QueryUtils {
                     // For a given earthquake, extract the JSONObject associated with the
                     // key called "properties", which represents a list of all properties
                     // for that earthquake.
+
+                    String geomaetryObject = currentEarthquake.getString("geometry");
+                    JSONObject geometryjson = new JSONObject(geomaetryObject);
+                    String geomaetrylocation = geometryjson.getString("location");
+                    JSONObject geolatlng = new JSONObject(geomaetrylocation);
+
+                    Double geomaetrylat = geolatlng.getDouble("lat");
+                    Double geomaetrylng = geolatlng.getDouble("lng");
+
+//                    String placeId = currentEarthquake.getString("id");
+
+
                     String hospitalname = currentEarthquake.getString("name");
 
 
-                    String hospitalrating = currentEarthquake.getString("rating");
+
+                    String hospitalicon = currentEarthquake.getString("icon");
                     String hospitalvicinty = currentEarthquake.getString("vicinity");
 
-                    Log.e("json value ", hospitalname +","+hospitalrating+","+hospitalvicinty);
+
+                    JSONArray nwphotoarray = currentEarthquake.getJSONArray("photos");
+                    JSONObject nwphotoobject = nwphotoarray.getJSONObject(0);
+                    String phtoref = nwphotoobject.getString("photo_reference");
+
+
+                    Log.e("json value ", phtoref);
+//                    Log.e("json value ", hospitalname +","+geomaetrylat+","+geomaetrylng+","+hospitalvicinty);
 
 
                     // Extract the value for the key called "mag"
@@ -191,10 +246,10 @@ public  final class QueryUtils {
 
                     // Create a new {@link Earthquake} object with the magnitude, location, time,
                     // and url from the JSON response.
-                    NearbyHospitals hospitals = new NearbyHospitals(hospitalname,hospitalrating,hospitalvicinty);
+                    NearbyHospitals hospitals = new NearbyHospitals(phtoref,hospitalname,hospitalvicinty,geomaetrylat,geomaetrylng,phtoref);
 
                     // Add the new {@link Earthquake} to the list of earthquakes.
-                    nearbyHospitals.add(hospitals);
+                       nearbyHospitals.add(hospitals);
                 }
 
             } catch (JSONException e) {
@@ -207,5 +262,7 @@ public  final class QueryUtils {
             // Return the list of earthquakes
             return nearbyHospitals;
         }
+
+
 
 }
