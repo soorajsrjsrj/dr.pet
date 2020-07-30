@@ -38,7 +38,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+
+
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -56,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     new MenuFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_mainmenu);
         }
+
 
         Intent intent = getIntent();
         String email = intent.getStringExtra("email_key");
@@ -101,6 +106,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             nav_profile.setImageBitmap(bt);
 
         }
+
 
 
 
