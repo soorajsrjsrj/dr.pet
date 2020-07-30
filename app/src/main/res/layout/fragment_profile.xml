@@ -1,11 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:background="@android:color/holo_blue_light">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="profile Fragment"
-        android:textSize="30sp" />
-</RelativeLayout>
+    android:layout_height="match_parent" android:background="@android:color/white">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+<!--       <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_centerInParent="true"-->
+<!--            android:text="Welcome to Dr.pet"-->
+<!--            android:textAlignment="center"-->
+<!--            android:background="#fece2f"-->
+<!--            android:textSize="30sp" />*/-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="131dp"
+            android:layout_marginBottom="0dp"
+            android:padding="10dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/profile_image"
+                android:layout_width="112dp"
+                android:layout_height="110dp"
+                android:layout_centerInParent="true"
+                android:clickable="true"
+                android:src="@drawable/dp"
+                app:civ_border_width="2dp"
+                app:civ_border_color="#FF000000"/>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_layout"
+            android:layout_width="match_parent"
+            android:layout_height="574dp"
+            android:orientation="vertical"
+            android:padding="50dp">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="First Name"
+                android:textSize="18sp"></TextView>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:hint="First Name" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/first"
+                android:layout_width="match_parent"
+                android:layout_height="37dp"
+                android:background="@drawable/blue_border_rounded_cornwe"
+                android:paddingLeft="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Last Name"
+                android:textSize="18sp">
+
+            </TextView>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:hint="Last Name" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/last"
+                android:layout_width="match_parent"
+                android:layout_height="37dp"
+                android:background="@drawable/blue_border_rounded_cornwe"
+                android:drawablePadding="10dp"
+                android:paddingLeft="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Phone Number"
+                android:textSize="18sp"></TextView>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:hint="Phone Number" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/phone"
+                android:layout_width="match_parent"
+                android:layout_height="37dp"
+                android:background="@drawable/blue_border_rounded_cornwe"
+                android:drawablePadding="10dp"
+                android:paddingLeft="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:textSize="18sp"></TextView>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:hint="Email" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/mail"
+                android:layout_width="match_parent"
+                android:layout_height="37dp"
+                android:layout_marginBottom="40dp"
+                android:background="@drawable/blue_border_rounded_cornwe"
+                android:drawablePadding="10dp"
+                android:editable="false"
+                android:paddingLeft="10dp" />
+
+            <Button
+                android:id="@+id/btn_update"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:background="@drawable/blue_border_rounded_cornwe1"
+                android:text="Update" />
+
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
