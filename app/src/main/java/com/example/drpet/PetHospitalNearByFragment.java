@@ -80,7 +80,7 @@ public class PetHospitalNearByFragment extends Fragment implements LoaderManager
             cursor.moveToFirst();
             lat= cursor.getDouble(1);
             log = cursor.getDouble(2);
-           Log.d("pet hospil nearby", "lat" + lat + ",long:"+log);
+//           Log.d("pet hospil nearby", "lat" + lat + ",long:"+log);
 
 
 
@@ -114,52 +114,34 @@ public class PetHospitalNearByFragment extends Fragment implements LoaderManager
         // so the list can be populated in the user interface
         earthquakeListView.setAdapter(mAdapter);
 
+
         earthquakeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                NearbyHospitals currentHospital = mAdapter.getItem(position);
+
+//                Log.d("ON ITEM CLICK: ", "value"+ currentHospital.getMstartLatitude());
 //
-//                Bundle args = new Bundle();
-//                args.putInt("doctor_id",1234);
-//                DetailedViewHospitalFragment newFragment = new DetailedViewHospitalFragment ();
-//                newFragment.setArguments(args);
+                Bundle args = new Bundle();
+                args.putString("hospname",currentHospital.getmName());
+                args.putString("hospaddress",currentHospital.getMaddress());
+                args.putString("hospimg",currentHospital.getMurlToImage());
+                args.putDouble("hosplat",currentHospital.getMstartLatitude());
+                args.putDouble("hosplong",currentHospital.getStartLongitude());
+                DetailedViewHospitalFragment newFragment = new DetailedViewHospitalFragment();
+                newFragment.setArguments(args);
 
 //
 //
-//
-//                Log.e("name: ", "> " +  o.get("mName"));
-//                Log.e("address: ", "> " +  o.get("Maddress"));
-////                Log.e("uname: ", "> " +  o.get("uname"));
-////                Log.e("password: ", "> " +  o.get("password"));
-//
-//
-//                DetailedViewHospitalFragment fragment = new DetailedViewHospitalFragment();
-//                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-//                Bundle bundle = new Bundle();
-//                bundle.putString("name", o.get("mName"));
-//                bundle.putString("address", o.get("Maddress"));
-//
-//                Log.e("name: ", "> " +  o.get("name"));
-//                Log.e("address: ", "> " +  o.get("address"));
-//
-//                fragment.setArguments(bundle);
-//                transaction.replace(R.id.fragment_container, new DetailedViewHospitalFragment() );
-//
-//                transaction.commit();
 
-//                FragmentManager fm = getActivity().getFragmentManager();
-//                Bundle arguments = new Bundle();
-//                arguments.putInt("VALUE1", 0);
-//                arguments.putInt("VALUE2", 100);
-//
-//
-//                fm.beginTransaction().replace(R.id.fragment_container, new DetailedViewHospitalFragment(arguments)).commit();
-
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        newFragment).addToBackStack( "tag" ).commit();
 
 
 ////////////////////////////////////original commit
-                getFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new DetailedViewHospitalFragment()).commit();
+//                getFragmentManager().beginTransaction().replace(R.id.fragment_container,
+//                        new DetailedViewHospitalFragment()).commit();
 
             }
         });
@@ -226,7 +208,7 @@ public class PetHospitalNearByFragment extends Fragment implements LoaderManager
 //            mAdapter.clear();
             mAdapter.addFeeds(nearhsptls);
             mAdapter.notifyDataSetChanged();
-            Log.d("ONLOAD FINISHED", "INSIDE THE NEARHOSPITAL LOOP");
+//            Log.d("ONLOAD FINISHED", "INSIDE THE NEARHOSPITAL LOOP");
 
         }
 
