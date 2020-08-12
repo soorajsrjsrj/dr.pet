@@ -5,13 +5,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import androidx.annotation.Nullable;
-
 public class DatabaseHelper extends SQLiteOpenHelper {
     //table_name
     public static final String TABLE_NAME = "profile";
     public static final String TABLE_PAYMENT = "payment";
     public static final String TABLE_LOCATION = "location";
+    public static final String TABLE_RETAILS = "ride";
     // Table columns
     public static final String id = "id";
     public static final String fName = "fName";
@@ -29,6 +28,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String location_Id = "card_id";
     public static final String latitude="latitude";
     public static final String logitude="logitude";
+    public static final String ridedetail_id="ridedetail_id";
+    public static final String hospName="hospName";
+    public static final String hospAddres="hospAddres";
+    public static final String hospDistnace="hospDistance";
+    public static final String hospPrice="hospPrice";
 
     // Database Information
     static final String DB_NAME = "DRPET.DB";
@@ -45,6 +49,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String CREATE_LOCATION = "create table " + TABLE_LOCATION +
             "( " + location_Id + " INTEGER PRIMARY KEY AUTOINCREMENT," + latitude + " DOUBLE, " +
          logitude + " DOUBLE, "+ user_id + " INTEGER, FOREIGN KEY(" + user_id + ") REFERENCES  " + TABLE_NAME + " ( " + id + " ));" ;
+    private static final String CREATE_RIDEDETAILS = "create table " + TABLE_RETAILS +
+            "( " + ridedetail_id + " INTEGER PRIMARY KEY AUTOINCREMENT," + hospName + " TEXT, " +
+            hospAddres + " TEXT  ,"  +  hospDistnace + " DOUBLE, " +  hospPrice + " DOUBLE, "+ user_id + " INTEGER, FOREIGN KEY(" + user_id + ") REFERENCES  " + TABLE_NAME + " ( " + id + " ));" ;
 
 //    " + location_Id + " INTEGER PRIMARY KEY AUTOINCREMENT,
 //            +
@@ -57,12 +64,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE);
         db.execSQL(CREATE_PAYMENT);
         db.execSQL(CREATE_LOCATION);
+        db.execSQL(CREATE_RIDEDETAILS);
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PAYMENT);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_LOCATION);
+        db.execSQL("DROP TABLE IF EXISTS "+ TABLE_RETAILS);
         onCreate(db);
     }
     /**
