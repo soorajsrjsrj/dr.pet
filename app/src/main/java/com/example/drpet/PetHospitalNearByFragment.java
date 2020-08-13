@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,13 +31,14 @@ import androidx.loader.content.Loader;
 
 import com.example.drpet.Model.DBManager;
 import com.google.android.gms.location.places.Place;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-public class PetHospitalNearByFragment extends Fragment implements LoaderManager.LoaderCallbacks<List<NearbyHospitals>>, SharedPreferences.OnSharedPreferenceChangeListener  {
+public class PetHospitalNearByFragment extends BottomSheetDialogFragment implements LoaderManager.LoaderCallbacks<List<NearbyHospitals>>, SharedPreferences.OnSharedPreferenceChangeListener  {
 
 
 
@@ -56,6 +58,15 @@ public class PetHospitalNearByFragment extends Fragment implements LoaderManager
     private DBManager dbManager;
     NearbyAdapter nw;
 
+
+    public PetHospitalNearByFragment(){
+
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
     @Nullable
     @Override

@@ -15,8 +15,10 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -48,6 +50,8 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.snackbar.Snackbar;
 
 public class MenuFragment extends Fragment implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks,
@@ -74,6 +78,9 @@ public class MenuFragment extends Fragment implements OnMapReadyCallback, Google
     LinearLayout payment_page;
 
     public double x3,x4;
+
+
+
 
 
     @Override
@@ -142,17 +149,30 @@ if(cursor.getCount()>0){
 
 
 
-        profile_page = (LinearLayout) getView().findViewById(R.id.profile_page);
-        payment_page = (LinearLayout) getView().findViewById(R.id.payment_page);
+//        profile_page = (LinearLayout) getView().findViewById(R.id.profile_page);
+//        payment_page = (LinearLayout) getView().findViewById(R.id.payment_page);
+//
+//        profile_page.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                assert getFragmentManager() != null;
+//                getFragmentManager().beginTransaction().replace(R.id.fragment_container,
+//                        new ProfileDetailFragment()).commit();
+//            }
+//        });
 
-        profile_page.setOnClickListener(new View.OnClickListener() {
+        final Button btnshw = getView().findViewById(R.id.buttonbottomsheet);
+        btnshw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                assert getFragmentManager() != null;
-                getFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new ProfileDetailFragment()).commit();
+                PetHospitalNearByFragment bottomSheetFragment = new PetHospitalNearByFragment();
+                bottomSheetFragment.show(getFragmentManager(), bottomSheetFragment.getTag());
+
+
             }
-        });
+
+        }
+    );
     }
 
     @Override
