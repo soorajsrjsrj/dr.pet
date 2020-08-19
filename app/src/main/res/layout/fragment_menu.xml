@@ -21,17 +21,25 @@
         class="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
 
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        app:layout_anchor="@+id/map"
+        app:layout_anchorGravity="center" />
 
     <Button
         android:id="@+id/buttonbottomsheet"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:layout_marginLeft="26dp"
+
+        android:layout_marginRight="26dp"
+        android:layout_marginBottom="50dp"
+
+
+        android:background="@drawable/round_bg_transparent"
         android:text="Find nearby hospitals"
-       android:layout_gravity="bottom|center"
-        android:layout_marginBottom="50dp"/>
-
-
+        android:textColor="#ffffff"
+        android:textSize="18dp" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

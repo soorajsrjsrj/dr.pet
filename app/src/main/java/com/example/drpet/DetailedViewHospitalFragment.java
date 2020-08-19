@@ -15,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.drpet.Model.DBManager;
@@ -88,7 +87,7 @@ public class DetailedViewHospitalFragment extends Fragment {
 
 
 
-        final TextView textfielname = (TextView) getView().findViewById(R.id.hospitalnme);
+        final TextView textfielname = (TextView) getView().findViewById(R.id.hospitalname);
         final TextView textfieldaddress = (TextView) getView().findViewById(R.id.rating);
         final ImageView textfieldimg = (ImageView) getView().findViewById(R.id.hospitalicon);
         final TextView textfielddistance = (TextView) getView().findViewById(R.id.editkmdistance);

@@ -16,7 +16,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.drpet.Model.DBManager;
-import com.google.android.gms.location.places.Place;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -98,7 +97,7 @@ public class NearbyAdapter extends BaseAdapter {
         NearbyHospitals currentHospital = getItem(position);
 
         // Find the TextView with view ID magnitude
-        TextView hospitalnamelist = (TextView) listItemView.findViewById(R.id.hospitalnme);
+        TextView hospitalnamelist = (TextView) listItemView.findViewById(R.id.hospitalname);
         // Format the magnitude to show 1 decimal place
         String formatname = currentHospital.getmName();
         // Display the magnitude of the current earthquake in that TextView

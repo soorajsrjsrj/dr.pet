@@ -43,7 +43,7 @@ public class RideAdapter extends BaseAdapter {
             convertView = inf.inflate(R.layout.ridedetaillist, null);
 
             holder = new ViewHolder();
-            holder.hospname = (TextView)convertView.findViewById(R.id.hospitalnme);
+            holder.hospname = (TextView)convertView.findViewById(R.id.hospitalname);
             holder.hospaddress = (TextView)convertView.findViewById(R.id.hospaddress);
             holder.hospdistance = (TextView)convertView.findViewById(R.id.hospdistance);
             holder.hospprice = (TextView)convertView.findViewById(R.id.hospprice);
@@ -58,7 +58,7 @@ public class RideAdapter extends BaseAdapter {
         holder.hospname.setText(stu.getHospName());
         holder.hospaddress.setText(stu.getHospAddress());
         holder.hospdistance.setText(stu.getDistance());
-        holder.hospprice.setText(stu.getPrice());
+        holder.hospprice.setText(stu.getPrice()+"$ Price");
 
 
         return convertView;

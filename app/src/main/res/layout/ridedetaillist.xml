@@ -1,41 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
     android:orientation="horizontal"
-    android:padding="16dp">
-    <LinearLayout
-        android:layout_width="0dp"
+    android:padding="16dp"
+    android:background="#A6D5CECE"
+  >
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_margin="16dp"
         android:layout_height="wrap_content"
-        android:layout_weight="3"
-        android:padding="10dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/hospitalnme"
-            android:layout_width="wrap_content"
+        android:background="#FFFFFF"
+        android:layout_marginBottom="2dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="10dp">
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
-            android:text="markhamhospital" />
-        <TextView
-            android:id="@+id/hospaddress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
 
-            android:text="5 km" />
 
-        <TextView
-            android:id="@+id/hospdistance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            <ImageView
 
-            android:text="5 km" />
+                android:layout_width="30dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                app:srcCompat="@mipmap/car" />
 
-        <TextView
-            android:id="@+id/hospprice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2.3 rating" />
-    </LinearLayout>
-</LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:padding="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/hospitalname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:capitalize="words"
+                    android:text="markhamhospital"
+                    android:textAllCaps="true"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/hospaddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:text="5 km"
+                    android:textSize="14sp"
+                    android:textStyle="normal" />
+
+
+
+                <TextView
+                    android:id="@+id/hospdistance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2.3 rating"
+                    android:textSize="14sp"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/hospprice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2.3 rating"
+                    android:textSize="14sp"
+                    android:textStyle="normal" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+

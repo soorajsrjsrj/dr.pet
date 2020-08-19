@@ -29,7 +29,7 @@ public class LoginActivity extends AppCompatActivity {
 
         final EditText l_email = findViewById(R.id.login_email);
         final EditText l_pwd = findViewById(R.id.login_pwd);
-        final FloatingActionButton login_btn = findViewById(R.id.btn_login);
+        final Button login_btn = findViewById(R.id.btn_login);
 //        final Button login_btn = findViewById(R.id.btn_login);
         final TextView l_reg = findViewById(R.id.register_link);
 
